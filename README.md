@@ -2,27 +2,22 @@
 
 ## Project setup
 ```
-npm install
+yarn
 ```
 
 ### Compiles and hot-reloads for development
 ```
-npm run serve
+yarn run electron:serve
 ```
 
 ### Compiles and minifies for production
 ```
-npm run build
+yarn run electron:build
 ```
 
-### Run your tests
+### Run your Serve ( first step )
 ```
-npm run test
-```
-
-### Lints and fixes files
-```
-npm run lint
+node app.js
 ```
 
 ### Customize configuration
