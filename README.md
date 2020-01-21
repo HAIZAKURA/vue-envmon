@@ -1,5 +1,10 @@
 # vue-envmon
 
+### Developed with
+```
+Node.js + Vue.js + Electron + Express + MongoDB
+```
+
 ## Project ready
 ```
 Install MongoDB
@@ -7,7 +12,7 @@ Creat database 'envmon'
 Creat collection 'users'
 Insert some documents into 'users'
 ```
-## document's format
+## Document's format
 ```
 {
     "userName": "admin",
