@@ -33,7 +33,7 @@
                 <div class="tab">测量限制</div>
               </router-link>
             </el-menu-item>
-            <el-menu-item v-if="this.pow == '3'" index="5">
+            <el-menu-item v-if="this.pow == '2' || this.pow == '3'" index="5">
               <router-link to="/acc-mgr">
                 <div class="tab">门禁管理</div>
               </router-link>
@@ -79,6 +79,14 @@ export default {
   computed: {
     ...mapGetters(['uid','nam','pow'])
   },
+  created: function() {
+    this.setUid(null)
+    this.setNam(null)
+    this.setPow('0')
+  },
+  mounted: function() {
+    console.log(this.pow)
+  },
   methods: {
     handleSelect(key, keyPath) {
       console.log(key, keyPath)
@@ -87,11 +95,11 @@ export default {
       this.setUid(null)
       this.setNam(null)
       this.setPow('0')
+      this.activeIndex = '1'
       // console.log(this.uid)
       // console.log(this.pow)
       // console.log(this.nam)
       this.$router.push('/')
-      this.activeIndex = '1'
     },
     ...mapActions(['setUid','setNam','setPow'])
   }

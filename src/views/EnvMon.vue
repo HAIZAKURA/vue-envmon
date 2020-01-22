@@ -53,7 +53,7 @@
 
         <el-card class="box-card">
           <div slot="header" class="clearfix">
-            <span class="card-header">SF<sub>6</sub>&nbsp;浓度</span>
+            <span class="card-header">SF<small>6</small>&nbsp;浓度</span>
           </div>
           <div class="text item">
             <el-row :gutter="2">
@@ -104,7 +104,7 @@
                 </p>
               </el-col>
               <el-col :span="6">
-                <span class="item-title">SF<sub>6</sub>风机</span>
+                <span class="item-title">SF<small>6</small>风机</span>
                 <p>
                   <el-switch
                     v-model="EnvMonStatus.sf_fan"
@@ -184,7 +184,7 @@
 
         <el-card class="box-card">
           <div slot="header" class="clearfix">
-            <span class="card-header">O<sub>3</sub>&nbsp;浓度</span>
+            <span class="card-header">O<small>3</small>&nbsp;浓度</span>
           </div>
           <div class="text item">
             <el-row :gutter="2">
@@ -240,7 +240,7 @@
               </el-col>
               <el-col :span="6">
                 <p>
-                  <el-button type="danger">签到</el-button>
+                  <el-button type="danger" @click="signIn()">签到</el-button>
                 </p>
               </el-col>
             </el-row>
@@ -253,6 +253,8 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex'
+
 export default {
   name: 'EnvMon',
   components: {
@@ -287,8 +289,12 @@ export default {
         pump: false,
         man_auto: true,
         def: false,
-      }
+      },
+      nowTime: '',
     }
+  },
+  computed: {
+    ...mapGetters(['nam'])
   },
   methods: {
     maSwitch() {
@@ -296,6 +302,44 @@ export default {
     },
     defSwitch() {
       this.EnvMonStatus.def = !this.EnvMonStatus.def
+    },
+    getNowTime() {
+      let yy = new Date().getFullYear();
+      let mm = new Date().getMonth()+1;
+      let dd = new Date().getDate();
+      let hh = new Date().getHours();
+      let mf = new Date().getMinutes()<10 ? '0'+new Date().getMinutes() : new Date().getMinutes();
+      let ss = new Date().getSeconds()<10 ? '0'+new Date().getSeconds() : new Date().getSeconds();
+      let time = yy+'-'+mm+'-'+dd+' '+hh+':'+mf+':'+ss;
+      return time
+    },
+    signIn() {
+      this.nowTime = this.getNowTime()
+      console.log(this.nowTime)
+      var addObj = [{
+        "signDate": this.nowTime,
+        "signUser": this.nam,
+        "instDate": new Date()
+      }]
+      this.$axios.post('server/api/addSign', addObj).then(res => {
+        if (res.data.status == "success") {
+          this.dialogAddUser = false
+          this.$message({
+            message: '签到成功',
+            type: 'success',
+            showClose: true,
+            offset: '75'
+          })
+        } else {
+          this.$message({
+            message: '签到失败',
+            type: 'error',
+            showClose: true,
+            offset: '75'
+          })
+          this.dialogAddUser = false
+        }
+      })
     }
   }
 }

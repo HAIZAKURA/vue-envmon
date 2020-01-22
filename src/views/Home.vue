@@ -58,7 +58,8 @@ export default {
           this.$message({
             message: '用户不存在',
             type: 'error',
-            showClose: true
+            showClose: true,
+            offset: '75'
           })
         } else {
           if (this.loginForm.userPass == res.data.userPass) {
@@ -71,7 +72,8 @@ export default {
             this.$message({
               message: '登录成功',
               type: 'success',
-              showClose: true
+              showClose: true,
+              offset: '75'
             })
             this.$router.push('/env-mon')
             // console.log(this.uid)
@@ -81,7 +83,8 @@ export default {
             this.$message({
               message: '密码错误',
               type: 'error',
-              showClose: true
+              showClose: true,
+              offset: '75'
             })
           }
         }

@@ -40,15 +40,18 @@
                 </el-table-column>
               </el-table>
               <br />
-              <el-row :gutter="2">
+              <el-row :gutter="20">
                 <el-col :span="8" style="display:none;">
                   <el-button type="primary" @click="queryUsers()">查询</el-button>
                 </el-col>
-                <el-col :span="12">
-                  <el-button type="primary" @click="dialogAddUser = true">增加</el-button>
+                <el-col :span="8">
+                  <el-button type="primary" @click="dialogAddUser = true" class="card-btn">增加</el-button>
                 </el-col>
-                <el-col :span="12">
-                  <el-button type="primary" @click="dialogDelUser = true">删除</el-button>
+                <el-col :span="8">
+                  <el-button type="primary" @click="dialogDelUser = true" class="card-btn">删除</el-button>
+                </el-col>
+                <el-col :span="8">
+                  <el-button type="primary" @click="exportSign()" class="card-btn">签到数据导出</el-button>
                 </el-col>
               </el-row>
             </div>
@@ -149,13 +152,15 @@ export default {
           this.$message({
             message: '删除成功',
             type: 'success',
-            showClose: true
+            showClose: true,
+            offset: '75'
           })
         } else {
           this.$message({
             message: '删除失败',
             type: 'error',
-            showClose: true
+            showClose: true,
+            offset: '75'
           })
           this.dialogDelUser = false
         }
@@ -171,7 +176,8 @@ export default {
           this.$message({
             message: '用户已存在',
             type: 'warning',
-            showClose: true
+            showClose: true,
+            offset: '75'
           })
           this.dialogAddUser = false
           addFlag = 0
@@ -185,19 +191,48 @@ export default {
             this.$message({
               message: '增加成功',
               type: 'success',
-              showClose: true
+              showClose: true,
+              offset: '75'
             })
           } else {
             this.$message({
               message: '增加失败',
               type: 'error',
-              showClose: true
+              showClose: true,
+              offset: '75'
             })
             this.dialogAddUser = false
           }
         })
       }
       this.queryUsers()
+    },
+    getNowTime() {
+      let yy = new Date().getFullYear();
+      let mm = new Date().getMonth()+1;
+      let dd = new Date().getDate();
+      let hh = new Date().getHours();
+      let mf = new Date().getMinutes()<10 ? '0'+new Date().getMinutes() : new Date().getMinutes();
+      let ss = new Date().getSeconds()<10 ? '0'+new Date().getSeconds() : new Date().getSeconds();
+      let time = yy+'-'+mm+'-'+dd+'-'+hh+'-'+mf+'-'+ss;
+      return time
+    },
+    exportSign() {
+      this.$axios.get('server/api/exportSign').then(res => {
+        const ExportJsonExcel = require('js-export-excel')
+        var option={};
+        let time = this.getNowTime()
+        option.fileName = 'SignRec_' + time
+        option.datas=[
+          {
+            sheetData: res.data,
+            sheetHeader: ['签到时间','签到用户'],
+            columnWidths: [10, 10]
+          }
+        ];
+        var toExcel = new ExportJsonExcel(option); //new
+        toExcel.saveExcel(); //保存
+      })
     }
   }
 }
@@ -209,4 +244,7 @@ export default {
 
 #dialog
   text-align left
+
+.card-btn
+  width 100%
 </style>
