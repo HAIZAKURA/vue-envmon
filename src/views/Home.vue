@@ -97,5 +97,5 @@ export default {
 
 <style lang="stylus" scoped>
 #loginCard
-  margin-top 8%
+  margin-top 16%
 </style>
