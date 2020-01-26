@@ -1,4 +1,5 @@
 # vue-envmon
+## Only front-end GUI
 
 ### Developed with
 ```
