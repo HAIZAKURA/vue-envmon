@@ -20,12 +20,14 @@
                 <p>查询时间范围</p>
                 <el-date-picker
                   v-model="dateValue"
-                  type="datetimerange"
+                  type="daterange"
                   range-separator="至"
                   start-placeholder="开始日期"
                   end-placeholder="结束日期"
                   align="center"
-                  :default-time="['12:00:00', '12:00:00']"
+                  unlink-panels
+                  value-format="yyyy-MM-dd"
+                  :picker-options="pickerOptions"
                 >
                 </el-date-picker>
               </div>
@@ -33,7 +35,7 @@
             <el-divider></el-divider>
             <el-row>
               <el-col :span="8" :offset="8">
-                <el-button type="primary">开始查询</el-button>
+                <el-button type="primary" @click="showDateValue()">开始查询</el-button>
               </el-col>
             </el-row>
           </el-card>
@@ -131,6 +133,29 @@ export default {
     return {
       cfgData: generateData(),
       value: [1, 4],
+      pickerOptions: {
+        shortcuts: [{
+            text: '最近一周',
+            onClick(picker) {
+              const end = new Date();
+              const start = new Date();
+              start.setTime(start.getTime() - 3600 * 1000 * 24 * 7);
+              picker.$emit('pick', [start, end]);
+            }
+          }, {
+            text: '最近一个月',
+            onClick(picker) {
+              const end = new Date();
+              const start = new Date();
+              start.setTime(start.getTime() - 3600 * 1000 * 24 * 30);
+              picker.$emit('pick', [start, end]);
+            }
+          }],
+        disabledDate(time) {
+          return time.getTime() > Date.now();
+          //设置不可点击时间为今天之后的时间
+        }
+      },
       dateValue: '',
       queData: [
         {
@@ -215,6 +240,9 @@ export default {
     }
   },
   methods: {
+    showDateValue() {
+      console.log(this.dateValue)
+    }
   }
 }
 </script>
