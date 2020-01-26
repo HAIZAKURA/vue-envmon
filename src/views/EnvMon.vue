@@ -11,38 +11,38 @@
             <el-row :gutter="2">
               <el-col :span="4">
                 <span class="item-title">温度一</span>
-                <p class="item-value">{{ EnvMonData.val_1_1 }}&nbsp;<small>&#176;C</small></p>
-                <p v-if="EnvMonData.val_1_1 > 40"><i class="el-icon-error" /></p>
+                <p class="item-value">{{ $root.devStatus.tempOnee }}&nbsp;<small>&#176;C</small></p>
+                <p v-if="$root.devStatus.tempOnee > $root.devCfg.tempUplt"><i class="el-icon-error" /></p>
                 <p v-else><i class="el-icon-success" /></p>
               </el-col>
               <el-col :span="4">
                 <span class="item-title">温度二</span>
-                <p class="item-value">{{ EnvMonData.val_1_2 }}&nbsp;<small>&#176;C</small></p>
-                <p v-if="EnvMonData.val_1_2 > 40"><i class="el-icon-error" /></p>
+                <p class="item-value">{{ $root.devStatus.tempTwoo }}&nbsp;<small>&#176;C</small></p>
+                <p v-if="$root.devStatus.tempTwoo > $root.devCfg.tempUplt"><i class="el-icon-error" /></p>
                 <p v-else><i class="el-icon-success" /></p>
               </el-col>
               <el-col :span="4">
                 <span class="item-title">温度三</span>
-                <p class="item-value">{{ EnvMonData.val_1_3 }}&nbsp;<small>&#176;C</small></p>
-                <p v-if="EnvMonData.val_1_3 > 40"><i class="el-icon-error" /></p>
+                <p class="item-value">{{ $root.devStatus.tempThre }}&nbsp;<small>&#176;C</small></p>
+                <p v-if="$root.devStatus.tempThre > $root.devCfg.tempUplt"><i class="el-icon-error" /></p>
                 <p v-else><i class="el-icon-success" /></p>
               </el-col>
               <el-col :span="4">
                 <span class="item-title">湿度一</span>
-                <p class="item-value">{{ EnvMonData.val_1_4 }}&nbsp;<small>&#37;</small></p>
-                <p v-if="EnvMonData.val_1_4 > 80"><i class="el-icon-error" /></p>
+                <p class="item-value">{{ $root.devStatus.humdOnee }}&nbsp;<small>&#37;</small></p>
+                <p v-if="$root.devStatus.humdOnee > $root.devCfg.humdUplt"><i class="el-icon-error" /></p>
                 <p v-else><i class="el-icon-success" /></p>
               </el-col>
               <el-col :span="4">
                 <span class="item-title">湿度二</span>
-                <p class="item-value">{{ EnvMonData.val_1_5 }}&nbsp;<small>&#37;</small></p>
-                <p v-if="EnvMonData.val_1_5 > 80"><i class="el-icon-error" /></p>
+                <p class="item-value">{{ $root.devStatus.humdTwoo }}&nbsp;<small>&#37;</small></p>
+                <p v-if="$root.devStatus.humdTwoo > $root.devCfg.humdUplt"><i class="el-icon-error" /></p>
                 <p v-else><i class="el-icon-success" /></p>
               </el-col>
               <el-col :span="4">
                 <span class="item-title">湿度三</span>
-                <p class="item-value">{{ EnvMonData.val_1_6 }}&nbsp;<small>&#37;</small></p>
-                <p v-if="EnvMonData.val_1_6 > 80"><i class="el-icon-error" /></p>
+                <p class="item-value">{{ $root.devStatus.humdThre }}&nbsp;<small>&#37;</small></p>
+                <p v-if="$root.devStatus.humdThre > $root.devCfg.humdUplt"><i class="el-icon-error" /></p>
                 <p v-else><i class="el-icon-success" /></p>
               </el-col>
             </el-row>
@@ -59,26 +59,26 @@
             <el-row :gutter="2">
               <el-col :span="6">
                 <span class="item-title">浓度一</span>
-                <p class="item-value">{{ EnvMonData.val_2_1 }}&nbsp;<small>PPm</small></p>
-                <p v-if="EnvMonData.val_2_1 > 20"><i class="el-icon-error" /></p>
+                <p class="item-value">{{ $root.devStatus.sftrOnee }}&nbsp;<small>PPm</small></p>
+                <p v-if="$root.devStatus.sftrOnee > 20"><i class="el-icon-error" /></p>
                 <p v-else><i class="el-icon-success" /></p>
               </el-col>
               <el-col :span="6">
                 <span class="item-title">浓度二</span>
-                <p class="item-value">{{ EnvMonData.val_2_2 }}&nbsp;<small>PPm</small></p>
-                <p v-if="EnvMonData.val_2_2 > 20"><i class="el-icon-error" /></p>
+                <p class="item-value">{{ $root.devStatus.sftrTwoo }}&nbsp;<small>PPm</small></p>
+                <p v-if="$root.devStatus.sftrTwoo > 20"><i class="el-icon-error" /></p>
                 <p v-else><i class="el-icon-success" /></p>
               </el-col>
               <el-col :span="6">
                 <span class="item-title">浓度三</span>
-                <p class="item-value">{{ EnvMonData.val_2_3 }}&nbsp;<small>PPm</small></p>
-                <p v-if="EnvMonData.val_2_3 > 20"><i class="el-icon-error" /></p>
+                <p class="item-value">{{ $root.devStatus.sftrThre }}&nbsp;<small>PPm</small></p>
+                <p v-if="$root.devStatus.sftrThre > 20"><i class="el-icon-error" /></p>
                 <p v-else><i class="el-icon-success" /></p>
               </el-col>
               <el-col :span="6">
                 <span class="item-title">浓度四</span>
-                <p class="item-value">{{ EnvMonData.val_2_4 }}&nbsp;<small>PPm</small></p>
-                <p v-if="EnvMonData.val_2_4 > 20"><i class="el-icon-error" /></p>
+                <p class="item-value">{{ $root.devStatus.sftrFour }}&nbsp;<small>PPm</small></p>
+                <p v-if="$root.devStatus.sftrFour > 20"><i class="el-icon-error" /></p>
                 <p v-else><i class="el-icon-success" /></p>
               </el-col>
             </el-row>
@@ -148,32 +148,32 @@
             <el-row :gutter="2">
               <el-col :span="4">
                 <span class="item-title">一号点</span>
-                <p class="item-value">{{ EnvMonData.val_3_1 }}&nbsp;<small>mm</small></p>
-                <p v-if="EnvMonData.val_3_1 > 100"><i class="el-icon-error" /></p>
+                <p class="item-value">{{ $root.devStatus.wtlvOnee }}&nbsp;<small>mm</small></p>
+                <p v-if="$root.devStatus.wtlvOnee > 100"><i class="el-icon-error" /></p>
                 <p v-else><i class="el-icon-success" /></p>
               </el-col>
               <el-col :span="4" :offset="1">
                 <span class="item-title">二号点</span>
-                <p class="item-value">{{ EnvMonData.val_3_2 }}&nbsp;<small>mm</small></p>
-                <p v-if="EnvMonData.val_3_2 > 100"><i class="el-icon-error" /></p>
+                <p class="item-value">{{ $root.devStatus.wtlvTwoo }}&nbsp;<small>mm</small></p>
+                <p v-if="$root.devStatus.wtlvTwoo > 100"><i class="el-icon-error" /></p>
                 <p v-else><i class="el-icon-success" /></p>
               </el-col>
               <el-col :span="4" :offset="1">
                 <span class="item-title">三号点</span>
-                <p class="item-value">{{ EnvMonData.val_3_3 }}&nbsp;<small>mm</small></p>
-                <p v-if="EnvMonData.val_3_3 > 100"><i class="el-icon-error" /></p>
+                <p class="item-value">{{ $root.devStatus.wtlvThre }}&nbsp;<small>mm</small></p>
+                <p v-if="$root.devStatus.wtlvThre > 100"><i class="el-icon-error" /></p>
                 <p v-else><i class="el-icon-success" /></p>
               </el-col>
               <el-col :span="4" :offset="1">
                 <span class="item-title">四号点</span>
-                <p class="item-value">{{ EnvMonData.val_3_4 }}&nbsp;<small>mm</small></p>
-                <p v-if="EnvMonData.val_3_4 > 100"><i class="el-icon-error" /></p>
+                <p class="item-value">{{ $root.devStatus.wtlvFour }}&nbsp;<small>mm</small></p>
+                <p v-if="$root.devStatus.wtlvFour > 100"><i class="el-icon-error" /></p>
                 <p v-else><i class="el-icon-success" /></p>
               </el-col>
               <el-col :span="4" :offset="1">
                 <span class="item-title">五号点</span>
-                <p class="item-value">{{ EnvMonData.val_3_5 }}&nbsp;<small>mm</small></p>
-                <p v-if="EnvMonData.val_3_5 > 100"><i class="el-icon-error" /></p>
+                <p class="item-value">{{ $root.devStatus.wtlvFive }}&nbsp;<small>mm</small></p>
+                <p v-if="$root.devStatus.wtlvFive > 100"><i class="el-icon-error" /></p>
                 <p v-else><i class="el-icon-success" /></p>
               </el-col>
             </el-row>
@@ -190,26 +190,26 @@
             <el-row :gutter="2">
               <el-col :span="6">
                 <span class="item-title">浓度一</span>
-                <p class="item-value">{{ EnvMonData.val_4_1 }}&nbsp;<small>PPm</small></p>
-                <p v-if="EnvMonData.val_4_1 > 20"><i class="el-icon-error" /></p>
+                <p class="item-value">{{ $root.devStatus.oxtrOnee }}&nbsp;<small>PPm</small></p>
+                <p v-if="$root.devStatus.oxtrOnee > 20"><i class="el-icon-error" /></p>
                 <p v-else><i class="el-icon-success" /></p>
               </el-col>
               <el-col :span="6">
                 <span class="item-title">浓度二</span>
-                <p class="item-value">{{ EnvMonData.val_4_2 }}&nbsp;<small>PPm</small></p>
-                <p v-if="EnvMonData.val_4_2 > 20"><i class="el-icon-error" /></p>
+                <p class="item-value">{{ $root.devStatus.oxtrTwoo }}&nbsp;<small>PPm</small></p>
+                <p v-if="$root.devStatus.oxtrTwoo > 20"><i class="el-icon-error" /></p>
                 <p v-else><i class="el-icon-success" /></p>
               </el-col>
               <el-col :span="6">
                 <span class="item-title">浓度三</span>
-                <p class="item-value">{{ EnvMonData.val_4_3 }}&nbsp;<small>PPm</small></p>
-                <p v-if="EnvMonData.val_4_3 > 20"><i class="el-icon-error" /></p>
+                <p class="item-value">{{ $root.devStatus.oxtrThre }}&nbsp;<small>PPm</small></p>
+                <p v-if="$root.devStatus.oxtrThre > 20"><i class="el-icon-error" /></p>
                 <p v-else><i class="el-icon-success" /></p>
               </el-col>
               <el-col :span="6">
                 <span class="item-title">浓度四</span>
-                <p class="item-value">{{ EnvMonData.val_4_4 }}&nbsp;<small>PPm</small></p>
-                <p v-if="EnvMonData.val_4_4 > 20"><i class="el-icon-error" /></p>
+                <p class="item-value">{{ $root.devStatus.oxtrFour }}&nbsp;<small>PPm</small></p>
+                <p v-if="$root.devStatus.oxtrFour > 20"><i class="el-icon-error" /></p>
                 <p v-else><i class="el-icon-success" /></p>
               </el-col>
             </el-row>
@@ -254,6 +254,7 @@
 
 <script>
 import { mapGetters } from 'vuex'
+// import GLOBAL from '@/api/global_variable'
 
 export default {
   name: 'EnvMon',
@@ -261,27 +262,8 @@ export default {
   },
   data() {
     return {
-      EnvMonData: {
-        val_1_1: '23.2',
-        val_1_2: '24.1',
-        val_1_3: '22.7',
-        val_1_4: '65.2',
-        val_1_5: '68.3',
-        val_1_6: '85.2',
-        val_2_1: '2',
-        val_2_2: '10',
-        val_2_3: '4',
-        val_2_4: '0',
-        val_3_1: '56',
-        val_3_2: '38',
-        val_3_3: '102',
-        val_3_4: '23',
-        val_3_5: '214',
-        val_4_1: '0.0',
-        val_4_2: '0.1',
-        val_4_3: '0.0',
-        val_4_4: '0.2',
-      },
+      // DevStatus: {},
+      // DevStatus: GLOBAL.DevStatus,
       EnvMonStatus: {
         fan: true,
         sf_fan: false,
@@ -291,12 +273,26 @@ export default {
         def: false,
       },
       nowTime: '',
+      timer: ''
     }
   },
   computed: {
     ...mapGetters(['nam'])
   },
+  // mounted: function() {
+  //   if (this.timer) {
+  //     clearInterval(this.timer)
+  //   } else {
+  //     this.timer = setInterval(() => {
+  //       this.getStatus()
+  //     }, 2000)
+  //   }
+  // },
   methods: {
+    // getStatus() {
+      // this.$axios.get('dev/GetStatus').then(res => (this.DevStatus = res.data))
+      // this.$axios.get('dev/GetStatus').then(res => (this.$root.devStatus = res.data))
+    // },
     maSwitch() {
       this.EnvMonStatus.man_auto = !this.EnvMonStatus.man_auto
     },
@@ -341,7 +337,10 @@ export default {
         }
       })
     }
-  }
+  },
+  // destroyed: function() {
+  //   clearInterval(this.timer)
+  // }
 }
 </script>
 
