@@ -24,31 +24,26 @@
               </router-link>
             </el-menu-item>
             <el-menu-item v-if="this.pow == '2' || this.pow == '3'" index="3">
-              <router-link to="/about">
-                <div class="tab">设备设置</div>
+              <router-link to="/dev-cfg">
+                <div class="tab">参数设置</div>
               </router-link>
             </el-menu-item>
             <el-menu-item v-if="this.pow == '2' || this.pow == '3'" index="4">
-              <router-link to="/about">
-                <div class="tab">测量限制</div>
-              </router-link>
-            </el-menu-item>
-            <el-menu-item v-if="this.pow == '2' || this.pow == '3'" index="5">
               <router-link to="/acc-mgr">
                 <div class="tab">门禁管理</div>
               </router-link>
             </el-menu-item>
-            <el-menu-item v-if="this.pow == '2' || this.pow == '3'" index="6">
+            <el-menu-item v-if="this.pow == '2' || this.pow == '3'" index="5">
               <router-link to="/air-mgr">
                 <div class="tab">空调管理</div>
               </router-link>
             </el-menu-item>
-            <el-menu-item v-if="this.pow == '2' || this.pow == '3'" index="7">
+            <el-menu-item v-if="this.pow == '2' || this.pow == '3'" index="6">
               <router-link to="/dat-que">
                 <div class="tab">数据查询</div>
               </router-link>
             </el-menu-item>
-            <el-menu-item v-if="this.pow == '3'" index="8">
+            <el-menu-item v-if="this.pow == '3'" index="7">
               <router-link to="/usr-mgr">
                 <div class="tab">权限管理</div>
               </router-link>
@@ -86,10 +81,32 @@ export default {
   },
   mounted: function() {
     console.log(this.pow)
+    // this.$createGetDevStatus()
+    this.$createGet()
+    if (this.saveTimer) {
+      clearInterval(this.saveTimer)
+      this.saveTimer = setInterval(() => {
+        this.saveDevStatus()
+      }, this.$root.saveInterval * 60 * 1000)
+    } else {
+      this.saveTimer = setInterval(() => {
+        this.saveDevStatus()
+      }, this.$root.saveInterval * 60 * 1000)
+    }
   },
   methods: {
     handleSelect(key, keyPath) {
       console.log(key, keyPath)
+      if (key == 3) {
+        this.$destoryGet()
+        this.$root.getStatus = 0
+      } else {
+        if (this.$root.getStatus == 0) {
+          // this.$createGetDevStatus()
+          this.$createGet()
+          this.$root.getStatus = 1
+        }
+      }
     },
     logOut() {
       this.setUid(null)
@@ -100,6 +117,45 @@ export default {
       // console.log(this.pow)
       // console.log(this.nam)
       this.$router.push('/')
+    },
+    // getDevStatus() {
+    //   this.$axios.get('dev/GetStatus').then(res => (this.$root.devStatus = res.data))
+    // },
+    getNowTime() {
+      let yy = new Date().getFullYear();
+      let mm = new Date().getMonth()+1;
+      let dd = new Date().getDate();
+      let hh = new Date().getHours();
+      let mf = new Date().getMinutes()<10 ? '0'+new Date().getMinutes() : new Date().getMinutes();
+      let time = yy+'-'+mm+'-'+dd+' '+hh+':'+mf;
+      return time
+    },
+    //将两个json对象合并
+    // twoJsonMerge(json1, json2 ){
+    //   var length1 = 0, length2 = 0, jsonStr,str;
+    //   for (var ever in json1) length1++;
+    //   for (var ever in json2) length2++; 
+    //   if (length1 && length2) str = ',';
+    //   else str = '';
+    //   jsonStr = ((JSON.stringify(json1)).replace(/,}/,'}') + (JSON.stringify(json2)).replace(/,}/,'}')).replace(/}{/,str);
+    //   return JSON.parse(jsonStr);
+    // },
+    saveDevStatus() {
+      var saveTimeJson = {
+        "saveDate": this.getNowTime(),
+        "instDate": new Date()
+      }
+      // var saveDataJson = this.twoJsonMerge(saveTimeJson, this.$root.devStatus)
+      var saveDataJson = JSON.parse((JSON.stringify(saveTimeJson) + JSON.stringify(this.$root.devStatus)).replace(/}{/,','));
+      console.log(saveDataJson)
+      this.$axios.post('server/api/addData', saveDataJson).then(res => {
+        if (res.data.status == "success") {
+          console.log('数据记录成功')
+        } else {
+          console.log('数据记录失败，进行重试')
+          this.saveDevStatus()
+        }
+      })
     },
     ...mapActions(['setUid','setNam','setPow'])
   }
