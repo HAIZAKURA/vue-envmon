@@ -60,25 +60,25 @@
               <el-col :span="6">
                 <span class="item-title">浓度一</span>
                 <p class="item-value">{{ $root.devStatus.sftrOnee }}&nbsp;<small>PPm</small></p>
-                <p v-if="$root.devStatus.sftrOnee > 20"><i class="el-icon-error" /></p>
+                <p v-if="$root.devStatus.sftrOnee > $root.devCfg.sfupLimt"><i class="el-icon-error" /></p>
                 <p v-else><i class="el-icon-success" /></p>
               </el-col>
               <el-col :span="6">
                 <span class="item-title">浓度二</span>
                 <p class="item-value">{{ $root.devStatus.sftrTwoo }}&nbsp;<small>PPm</small></p>
-                <p v-if="$root.devStatus.sftrTwoo > 20"><i class="el-icon-error" /></p>
+                <p v-if="$root.devStatus.sftrTwoo > $root.devCfg.sfupLimt"><i class="el-icon-error" /></p>
                 <p v-else><i class="el-icon-success" /></p>
               </el-col>
               <el-col :span="6">
                 <span class="item-title">浓度三</span>
                 <p class="item-value">{{ $root.devStatus.sftrThre }}&nbsp;<small>PPm</small></p>
-                <p v-if="$root.devStatus.sftrThre > 20"><i class="el-icon-error" /></p>
+                <p v-if="$root.devStatus.sftrThre > $root.devCfg.sfupLimt"><i class="el-icon-error" /></p>
                 <p v-else><i class="el-icon-success" /></p>
               </el-col>
               <el-col :span="6">
                 <span class="item-title">浓度四</span>
                 <p class="item-value">{{ $root.devStatus.sftrFour }}&nbsp;<small>PPm</small></p>
-                <p v-if="$root.devStatus.sftrFour > 20"><i class="el-icon-error" /></p>
+                <p v-if="$root.devStatus.sftrFour > $root.devCfg.sfupLimt"><i class="el-icon-error" /></p>
                 <p v-else><i class="el-icon-success" /></p>
               </el-col>
             </el-row>
@@ -97,9 +97,14 @@
                 <span class="item-title">排风机</span>
                 <p>
                   <el-switch
-                    v-model="EnvMonStatus.fan"
+                    v-model="$root.devOth.fansTate"
                     active-color="#13ce66"
-                    inactive-color="#ff4949">
+                    inactive-color="#ff4949"
+                    :active-value="1"
+                    :inactive-value="0"
+                    :disabled="!$root.devOth.maauStae"
+                    @change="fanSwitch()"
+                  >
                   </el-switch>
                 </p>
               </el-col>
@@ -107,9 +112,14 @@
                 <span class="item-title">SF<small>6</small>风机</span>
                 <p>
                   <el-switch
-                    v-model="EnvMonStatus.sf_fan"
+                    v-model="$root.devOth.sffAnste"
                     active-color="#13ce66"
-                    inactive-color="#ff4949">
+                    inactive-color="#ff4949"
+                    :active-value="1"
+                    :inactive-value="0"
+                    :disabled="!$root.devOth.maauStae"
+                    @change="sffSwitch()"
+                  >
                   </el-switch>
                 </p>
               </el-col>
@@ -117,9 +127,14 @@
                 <span class="item-title">除湿机</span>
                 <p>
                   <el-switch
-                    v-model="EnvMonStatus.dehum"
+                    v-model="$root.devOth.dehuStae"
                     active-color="#13ce66"
-                    inactive-color="#ff4949">
+                    inactive-color="#ff4949"
+                    :active-value="1"
+                    :inactive-value="0"
+                    :disabled="!$root.devOth.maauStae"
+                    @change="dehSwitch()"
+                  >
                   </el-switch>
                 </p>
               </el-col>
@@ -127,9 +142,14 @@
                 <span class="item-title">抽水泵</span>
                 <p>
                   <el-switch
-                    v-model="EnvMonStatus.pump"
+                    v-model="$root.devOth.pumpStae"
                     active-color="#13ce66"
-                    inactive-color="#ff4949">
+                    inactive-color="#ff4949"
+                    :active-value="1"
+                    :inactive-value="0"
+                    :disabled="!$root.devOth.maauStae"
+                    @change="pumSwich()"
+                  >
                   </el-switch>
                 </p>
               </el-col>
@@ -149,31 +169,31 @@
               <el-col :span="4">
                 <span class="item-title">一号点</span>
                 <p class="item-value">{{ $root.devStatus.wtlvOnee }}&nbsp;<small>mm</small></p>
-                <p v-if="$root.devStatus.wtlvOnee > 100"><i class="el-icon-error" /></p>
+                <p v-if="$root.devStatus.wtlvOnee > $root.devCfg.soakWtlv"><i class="el-icon-error" /></p>
                 <p v-else><i class="el-icon-success" /></p>
               </el-col>
               <el-col :span="4" :offset="1">
                 <span class="item-title">二号点</span>
                 <p class="item-value">{{ $root.devStatus.wtlvTwoo }}&nbsp;<small>mm</small></p>
-                <p v-if="$root.devStatus.wtlvTwoo > 100"><i class="el-icon-error" /></p>
+                <p v-if="$root.devStatus.wtlvTwoo > $root.devCfg.soakWtlv"><i class="el-icon-error" /></p>
                 <p v-else><i class="el-icon-success" /></p>
               </el-col>
               <el-col :span="4" :offset="1">
                 <span class="item-title">三号点</span>
                 <p class="item-value">{{ $root.devStatus.wtlvThre }}&nbsp;<small>mm</small></p>
-                <p v-if="$root.devStatus.wtlvThre > 100"><i class="el-icon-error" /></p>
+                <p v-if="$root.devStatus.wtlvThre > $root.devCfg.soakWtlv"><i class="el-icon-error" /></p>
                 <p v-else><i class="el-icon-success" /></p>
               </el-col>
               <el-col :span="4" :offset="1">
                 <span class="item-title">四号点</span>
                 <p class="item-value">{{ $root.devStatus.wtlvFour }}&nbsp;<small>mm</small></p>
-                <p v-if="$root.devStatus.wtlvFour > 100"><i class="el-icon-error" /></p>
+                <p v-if="$root.devStatus.wtlvFour > $root.devCfg.soakWtlv"><i class="el-icon-error" /></p>
                 <p v-else><i class="el-icon-success" /></p>
               </el-col>
               <el-col :span="4" :offset="1">
                 <span class="item-title">五号点</span>
                 <p class="item-value">{{ $root.devStatus.wtlvFive }}&nbsp;<small>mm</small></p>
-                <p v-if="$root.devStatus.wtlvFive > 100"><i class="el-icon-error" /></p>
+                <p v-if="$root.devStatus.wtlvFive > $root.devCfg.soakWtlv"><i class="el-icon-error" /></p>
                 <p v-else><i class="el-icon-success" /></p>
               </el-col>
             </el-row>
@@ -191,25 +211,25 @@
               <el-col :span="6">
                 <span class="item-title">浓度一</span>
                 <p class="item-value">{{ $root.devStatus.oxtrOnee }}&nbsp;<small>PPm</small></p>
-                <p v-if="$root.devStatus.oxtrOnee > 20"><i class="el-icon-error" /></p>
+                <p v-if="$root.devStatus.oxtrOnee > $root.devCfg.oxtrUplm"><i class="el-icon-error" /></p>
                 <p v-else><i class="el-icon-success" /></p>
               </el-col>
               <el-col :span="6">
                 <span class="item-title">浓度二</span>
                 <p class="item-value">{{ $root.devStatus.oxtrTwoo }}&nbsp;<small>PPm</small></p>
-                <p v-if="$root.devStatus.oxtrTwoo > 20"><i class="el-icon-error" /></p>
+                <p v-if="$root.devStatus.oxtrTwoo > $root.devCfg.oxtrUplm"><i class="el-icon-error" /></p>
                 <p v-else><i class="el-icon-success" /></p>
               </el-col>
               <el-col :span="6">
                 <span class="item-title">浓度三</span>
                 <p class="item-value">{{ $root.devStatus.oxtrThre }}&nbsp;<small>PPm</small></p>
-                <p v-if="$root.devStatus.oxtrThre > 20"><i class="el-icon-error" /></p>
+                <p v-if="$root.devStatus.oxtrThre > $root.devCfg.oxtrUplm"><i class="el-icon-error" /></p>
                 <p v-else><i class="el-icon-success" /></p>
               </el-col>
               <el-col :span="6">
                 <span class="item-title">浓度四</span>
                 <p class="item-value">{{ $root.devStatus.oxtrFour }}&nbsp;<small>PPm</small></p>
-                <p v-if="$root.devStatus.oxtrFour > 20"><i class="el-icon-error" /></p>
+                <p v-if="$root.devStatus.oxtrFour > $root.devCfg.oxtrUplm"><i class="el-icon-error" /></p>
                 <p v-else><i class="el-icon-success" /></p>
               </el-col>
             </el-row>
@@ -225,8 +245,12 @@
           <div class="text item">
             <el-row :gutter="2">
               <el-col :span="6">
-                <p v-if="!EnvMonStatus.man_auto"><el-button type="danger" @click="maSwitch()">M&nbsp;A&nbsp;N</el-button></p>
-                <p v-else><el-button type="success" @click="maSwitch()">AUTO</el-button></p>
+                <p v-if="$root.devOth.maauStae">
+                  <el-button type="danger" @click="maSwitch()">M&nbsp;A&nbsp;N</el-button>
+                </p>
+                <p v-else>
+                  <el-button type="success" @click="maSwitch()">AUTO</el-button>
+                </p>
               </el-col>
               <el-col :span="6">
                 <p>
@@ -235,7 +259,7 @@
               </el-col>
               <el-col :span="6">
                 <span class="item-title">布防状态</span>
-                <p v-if="!EnvMonStatus.def"><i class="el-icon-error" /></p>
+                <p v-if="!$root.devOth.aminStae"><i class="el-icon-error" /></p>
                 <p v-else><i class="el-icon-success" /></p>
               </el-col>
               <el-col :span="6">
@@ -249,6 +273,7 @@
 
       </el-col>
     </el-row>
+    <!-- <el-button type="danger" @click="getTEST()">123</el-button> -->
   </div>
 </template>
 
@@ -264,16 +289,16 @@ export default {
     return {
       // DevStatus: {},
       // DevStatus: GLOBAL.DevStatus,
-      EnvMonStatus: {
-        fan: true,
-        sf_fan: false,
-        dehum: true,
-        pump: false,
-        man_auto: true,
-        def: false,
-      },
+      // EnvMonStatus: {
+      //   fan: true,
+      //   sf_fan: false,
+      //   dehum: true,
+      //   pump: false,
+      //   man_auto: true,
+      //   def: false,
+      // },
       nowTime: '',
-      timer: ''
+      // timer: ''
     }
   },
   computed: {
@@ -293,11 +318,26 @@ export default {
       // this.$axios.get('dev/GetStatus').then(res => (this.DevStatus = res.data))
       // this.$axios.get('dev/GetStatus').then(res => (this.$root.devStatus = res.data))
     // },
-    maSwitch() {
-      this.EnvMonStatus.man_auto = !this.EnvMonStatus.man_auto
-    },
-    defSwitch() {
-      this.EnvMonStatus.def = !this.EnvMonStatus.def
+    setSwitch(id) {
+      this.$axios.get('http://127.0.0.1:5000/SetSwitch/' + id)
+      .then(() => {
+        // console.log(" Code: " + id)
+        this.$createGet()
+      })
+      .catch((err) => {
+        // console.log(err)
+        this.$createGet()
+      })
+      // this.$destoryGet()
+      // setTimeout(() => {
+      //   this.$axios.get('dev/SetSwitch/' + id).then(() => {
+      //     console.log(" Code: " + id)
+      //     this.$createGet()
+          // setTimeout(() => {
+          //   this.$createGet()
+          // }, 1000)
+      //   })
+      // }, 1000)
     },
     getNowTime() {
       let yy = new Date().getFullYear();
@@ -311,15 +351,25 @@ export default {
     },
     signIn() {
       this.nowTime = this.getNowTime()
-      console.log(this.nowTime)
+      // console.log(this.nowTime)
       var addObj = [{
         "signDate": this.nowTime,
         "signUser": this.nam,
         "instDate": new Date()
       }]
-      this.$axios.post('server/api/addSign', addObj).then(res => {
+      this.$axios.post('http://127.0.0.1:3000/api/addSign', addObj).then(res => {
         if (res.data.status == "success") {
-          this.dialogAddUser = false
+          this.$destoryGet()
+          setTimeout(() => {
+            this.setSwitch(13)
+            // this.$message({
+            //   message: '签到成功',
+            //   type: 'success',
+            //   showClose: true,
+            //   offset: '75'
+            // })
+          }, 2000)
+          // this.setSwitch(13)
           this.$message({
             message: '签到成功',
             type: 'success',
@@ -333,10 +383,112 @@ export default {
             showClose: true,
             offset: '75'
           })
-          this.dialogAddUser = false
         }
       })
+    },
+    defSwitch() {
+      this.$destoryGet()
+      this.$message({
+        message: '切换中...',
+        type: 'warning',
+        showClose: true,
+        offset: '75'
+      })
+      setTimeout(() => {
+        this.$root.devOth.aminStae = (this.$root.devOth.aminStae) ? 0 : 1
+        this.setSwitch(9)
+      }, 2000)
+      // this.$root.devOth.aminStae = (this.$root.devOth.aminStae) ? 0 : 1
+      // this.setSwitch(9)
+      // this.$root.devOth.aminStae = (this.$root.devOth.aminStae) ? 0 : 1
+    },
+    maSwitch() {
+      // console.log("TEST")
+      this.$destoryGet()
+      this.$message({
+        message: '切换中...',
+        type: 'warning',
+        showClose: true,
+        offset: '75'
+      })
+      setTimeout(() => {
+        if (this.$root.devOth.maauStae == 1) {
+          this.$root.devOth.maauStae = 0
+          this.setSwitch(80)
+        } else {
+          this.$root.devOth.maauStae = 1
+          this.setSwitch(81)
+        }
+      }, 2000)
+    },
+    fanSwitch() {
+      this.$destoryGet()
+      this.$message({
+        message: '切换中...',
+        type: 'warning',
+        showClose: true,
+        offset: '75'
+      })
+      setTimeout(() => {
+        if (this.$root.devOth.fansTate == 0) {
+          this.setSwitch(1)
+        } else {
+          this.setSwitch(0)
+        }
+      }, 1000)
+    },
+    sffSwitch() {
+      this.$destoryGet()
+      this.$message({
+        message: '切换中...',
+        type: 'warning',
+        showClose: true,
+        offset: '75'
+      })
+      setTimeout(() => {
+        if (this.$root.devOth.sffAnste == 0) {
+          this.setSwitch(3)
+        } else {
+          this.setSwitch(2)
+        }
+      }, 1000)
+    },
+    dehSwitch() {
+      this.$destoryGet()
+      this.$message({
+        message: '切换中...',
+        type: 'warning',
+        showClose: true,
+        offset: '75'
+      })
+      setTimeout(() => {
+        if (this.$root.devOth.dehuStae == 0) {
+          this.setSwitch(5)
+        } else {
+          this.setSwitch(4)
+        }
+      }, 1000)
+    },
+    pumSwich() {
+      this.$destoryGet()
+      this.$message({
+        message: '切换中...',
+        type: 'warning',
+        showClose: true,
+        offset: '75'
+      })
+      setTimeout(() => {
+        if (this.$root.devOth.pumpStae == 0) {
+          this.setSwitch(7)
+        } else {
+          this.setSwitch(6)
+        }
+      }, 1000)
     }
+    // getTEST() {
+    //   console.log(this)
+    //   this.$destoryGet()
+    // }
   },
   // destroyed: function() {
   //   clearInterval(this.timer)
