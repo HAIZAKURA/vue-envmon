@@ -10,46 +10,83 @@ Vue.config.productionTip = false
 Vue.use(ElementUI)
 Vue.prototype.$axios = axios;
 
-Vue.prototype.$createGetDevStatus = function() {
-  if (this.getTimer) {
-    clearInterval(this.getTimer)
-    this.getTimer = setInterval(() => {
-      this.$axios.get('dev/GetStatus').then(res => (this.$root.devStatus = res.data))
-    }, 2000)
-  } else {
-    this.getTimer = setInterval(() => {
-      this.$axios.get('dev/GetStatus').then(res => (this.$root.devStatus = res.data))
-    }, 2000)
-  }
-}
-
-Vue.prototype.$destoryGetDevStatus = function() {
-  clearInterval(this.getTimer)
-}
-
 Vue.prototype.$createGet = function() {
-  if (this.getTimer) {
-    clearInterval(this.getTimer)
-    this.getTimer = setInterval(() => {
-      this.$axios.get('dev/GetStatus').then(resStatus => (this.$root.devStatus = resStatus.data))
+  if (this.$root.getTimer) {
+    clearInterval(this.$root.getTimer)
+    this.$root.getTimer = setInterval(() => {
+      this.$axios.get('http://127.0.0.1:5000/GetOthers').then(resOth => (this.$root.devOth = resOth.data))
+      // this.$axios.get('dev/GetStatus').then(resStatus => (this.$root.devStatus = resStatus.data))
       // this.$axios.get('dev/GetCfg').then(resCfg => (this.$root.devStatus = resCfg.data))
       setTimeout(() => {
-        this.$axios.get('dev/GetCfg').then(resCfg => (this.$root.devCfg = resCfg.data))
-      }, 750)
-    }, 1500)
+        this.$axios.get('http://127.0.0.1:5000/GetCfg').then(resCfg => (this.$root.devCfg = resCfg.data))
+        setTimeout(() => {
+          this.$axios.get('http://127.0.0.1:5000/GetStatus').then(resStatus => (this.$root.devStatus = resStatus.data))
+          // this.$axios.get('dev/GetOthers').then(resOth => (this.$root.devOth = resOth.data))
+        }, 800)
+      }, 800)
+    }, 2500)
   } else {
-    this.getTimer = setInterval(() => {
-      this.$axios.get('dev/GetStatus').then(resStatus => (this.$root.devStatus = resStatus.data))
+    this.$root.getTimer = setInterval(() => {
+      this.$axios.get('http://127.0.0.1:5000/GetOthers').then(resOth => (this.$root.devOth = resOth.data))
+      // this.$axios.get('dev/GetStatus').then(resStatus => (this.$root.devStatus = resStatus.data))
       // this.$axios.get('dev/GetCfg').then(resCfg => (this.$root.devStatus = resCfg.data))
       setTimeout(() => {
-        this.$axios.get('dev/GetCfg').then(resCfg => (this.$root.devCfg = resCfg.data))
-      }, 750)
-    }, 1500)
+        this.$axios.get('http://127.0.0.1:5000/GetCfg').then(resCfg => (this.$root.devCfg = resCfg.data))
+        setTimeout(() => {
+          this.$axios.get('http://127.0.0.1:5000/GetStatus').then(resStatus => (this.$root.devStatus = resStatus.data))
+          // this.$axios.get('dev/GetOthers').then(resOth => (this.$root.devOth = resOth.data))
+        }, 800)
+      }, 800)
+    }, 2500)
   }
 }
 
 Vue.prototype.$destoryGet = function() {
-  clearInterval(this.getTimer)
+  clearInterval(this.$root.getTimer)
+}
+
+Vue.prototype.$getTime = function() {
+  let yy = new Date().getFullYear();
+  let mm = new Date().getMonth()+1;
+  let dd = new Date().getDate();
+  let hh = new Date().getHours();
+  let mf = new Date().getMinutes()<10 ? '0'+new Date().getMinutes() : new Date().getMinutes();
+  let time = yy+'-'+mm+'-'+dd+' '+hh+':'+mf;
+  return time
+}
+
+Vue.prototype.$saveDevStatus = function() {
+  var saveTimeJson = {
+    "saveDate": this.$getTime(),
+    "instDate": new Date()
+  }
+  var saveDataJson = JSON.parse((JSON.stringify(saveTimeJson) + JSON.stringify(this.$root.devStatus)).replace(/}{/,','));
+  // console.log(saveDataJson)
+  this.$axios.post('http://127.0.0.1:3000/api/addData', saveDataJson).then(res => {
+    if (res.data.status == "success") {
+      // console.log('数据记录成功')
+    } else {
+      // console.log('数据记录失败，进行重试')
+      this.saveDevStatus()
+    }
+  })
+}
+
+Vue.prototype.$destorySave = function() {
+  clearInterval(this.$root.saveTimer)
+}
+
+Vue.prototype.$createSave = function() {
+  if (this.$root.saveTimer) {
+    clearInterval(this.$root.saveTimer)
+    this.$root.saveTimer = setInterval(() => {
+      this.$saveDevStatus()
+    }, this.$root.saveInterval * 60 * 1000)
+  } else {
+    this.$root.saveTimer = setInterval(() => {
+      this.$saveDevStatus()
+    }, this.$root.saveInterval * 60 * 1000)
+  }
 }
 
 new Vue({
@@ -58,7 +95,10 @@ new Vue({
       saveInterval: 1,
       getStatus: 1,
       devStatus: {},
-      devCfg: {}
+      devCfg: {},
+      devOth: {},
+      getTimer: '',
+      saveTimer: ''
     }
   },
   router,
