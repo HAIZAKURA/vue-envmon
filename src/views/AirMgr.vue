@@ -70,7 +70,7 @@
                       <el-input type="text" v-model="addr" placeholder="请输入" @focus="show" data-layout="normal"></el-input>
                     </el-form-item>
                     <el-form-item>
-                      <el-button type="primary">进入设备</el-button>
+                      <el-button type="primary" @click="TEST()">进入设备</el-button>
                     </el-form-item>
                   </el-col>
                 </el-row>
@@ -113,6 +113,10 @@ export default {
     }
   },
   methods: {
+    TEST() {
+      let exec = require('child_process').exec;
+      exec('C:\\air.lnk')
+    }
   }
 }
 </script>
