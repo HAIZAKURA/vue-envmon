@@ -123,7 +123,7 @@ export default {
   },
   data() {
     return {
-      userData: '',
+      userData: [{}],
       dialogAddUser: false,
       dialogDelUser: false,
       addForm: {
@@ -143,10 +143,10 @@ export default {
   },
   methods: {
     queryUsers() {
-      this.$axios.get('server/api/user').then(res => (this.userData = res.data))
+      this.$axios.get('http://127.0.0.1:3000/api/user').then(res => (this.userData = res.data))
     },
     delUser() {
-      this.$axios.delete('server/api/delUser/'+this.delForm.userId).then(res => {
+      this.$axios.delete('http://127.0.0.1:3000/api/delUser/'+this.delForm.userId).then(res => {
         if (res.data.status == "success") {
           this.dialogDelUser = false
           this.$message({
@@ -170,7 +170,7 @@ export default {
     addUser() {
       var addFlag = 1
       var addObj = this.addForm
-      console.log(addObj)
+      // console.log(addObj)
       for (var i = 0, len = this.userData.length; i < len; i++) {
         if (this.userData[i].userName == this.addForm.userName) {
           this.$message({
@@ -185,7 +185,7 @@ export default {
         }
       }
       if (addFlag === 1) {
-        this.$axios.post('server/api/addUser', addObj).then(res => {
+        this.$axios.post('http://127.0.0.1:3000/api/addUser', addObj).then(res => {
           if (res.data.status == "success") {
             this.dialogAddUser = false
             this.$message({
@@ -218,7 +218,7 @@ export default {
       return time
     },
     exportSign() {
-      this.$axios.get('server/api/exportSign').then(res => {
+      this.$axios.get('http://127.0.0.1:3000/api/exportSign').then(res => {
         const ExportJsonExcel = require('js-export-excel')
         var option={};
         let time = this.getNowTime()
