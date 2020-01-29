@@ -85,7 +85,7 @@ app.on('ready', async () => {
   globalShortcut.register('Control+Shift+I', function () {
     win.webContents.openDevTools({mode:'detach'})
   })
-  // win.maximize()
+  win.maximize()
 })
 
 // Exit cleanly on request from parent process in development mode.
