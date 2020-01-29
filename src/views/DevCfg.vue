@@ -187,7 +187,7 @@
                   </el-input>
                 </el-col>
                 <el-col :span="3">
-                  <span class="item-title">SF<smal>6</smal>强排时间</span>
+                  <span class="item-title">SF<small>6</small>强排时间</span>
                   <br /><br />
                   <el-input v-model="$root.devCfg.sfvtTime">
                     <template slot="append">Min</template>
@@ -283,22 +283,22 @@
                 </el-col>
                 <el-col :span="2">
                   <span class="item-title">母排温度上限</span>
-                  <p class="unit">&#37;</p>
+                  <p class="unit">&#176;C</p>
                   <el-input v-model="$root.devCfg.butmUplm"></el-input>
                 </el-col>
                 <el-col :span="3">
                   <span class="item-title">变压器电流上限</span>
-                  <p class="unit">mm</p>
+                  <p class="unit">A</p>
                   <el-input v-model="$root.devCfg.trcuUplm"></el-input>
                 </el-col>
                 <el-col :span="3">
                   <span class="item-title">变压器电压上限</span>
-                  <p class="unit">mm</p>
+                  <p class="unit">V</p>
                   <el-input v-model="$root.devCfg.trvoUplm"></el-input>
                 </el-col>
                 <el-col :span="3">
                   <span class="item-title">变压器电压下限</span>
-                  <p class="unit">mm</p>
+                  <p class="unit">V</p>
                   <el-input v-model="$root.devCfg.trvoDnlm"></el-input>
                 </el-col>
                 <el-col :span="2">
@@ -308,7 +308,7 @@
                 </el-col>
                 <el-col :span="3">
                   <span class="item-title">火灾剩余电流上限</span>
-                  <p class="unit">mA</p>
+                  <p class="unit">A</p>
                   <el-input v-model="$root.devCfg.resiUplm"></el-input>
                 </el-col>
                 <el-col :span="3">
@@ -328,7 +328,8 @@
         </el-col>
       </el-row>
     </div>
-    <el-button id="saveBtn" type="success">保存参数</el-button>
+    <!-- <el-button id="saveBtnA" type="success" @click="TESTFUNCA()">保存参数</el-button> -->
+    <el-button id="saveBtn" type="success" @click="setDeivce()">保存参数</el-button>
   </div>
 </template>
 
@@ -344,10 +345,157 @@ export default {
       firsTtim: this.$root.devCfg.firsThou + ':' + this.$root.devCfg.firsTmin,
       firsPtim: this.$root.devCfg.firsPhou + ':' + this.$root.devCfg.firsPmin,
       secsTtim: this.$root.devCfg.secsThou + ':' + this.$root.devCfg.secsTmin,
-      secsPtim: this.$root.devCfg.secsPhou + ':' + this.$root.devCfg.secsPmin
+      secsPtim: this.$root.devCfg.secsPhou + ':' + this.$root.devCfg.secsPmin,
+      fullscreenLoading: false,
     }
   },
   methods: {
+    fansTempLimit() {
+      if (this.$root.devCfg.fansTemp > 50) {
+        this.$root.devCfg.fansTemp = 50
+      }
+    },
+    setDeivce() {
+      this.$destorySave()
+      var atamTH = this.atamTime.match(/^[0-9]{1,2}/)
+      var atamTM = this.atamTime.match(/[0-9]{1,2}$/)
+      var deamTH = this.deamTime.match(/^[0-9]{1,2}/)
+      var deamTM = this.deamTime.match(/[0-9]{1,2}$/)
+      var firsTH = this.firsTtim.match(/^[0-9]{1,2}/)
+      var firsTM = this.firsTtim.match(/[0-9]{1,2}$/)
+      var firsPH = this.firsPtim.match(/^[0-9]{1,2}/)
+      var firsPM = this.firsPtim.match(/[0-9]{1,2}$/)
+      var secsTH = this.secsTtim.match(/^[0-9]{1,2}/)
+      var secsTM = this.secsTtim.match(/[0-9]{1,2}$/)
+      var secsPH = this.secsPtim.match(/^[0-9]{1,2}/)
+      var secsPM = this.secsPtim.match(/[0-9]{1,2}$/)
+      this.$root.devCfg.atamHour = parseInt(atamTH[0])
+      this.$root.devCfg.atamMinu = parseInt(atamTM[0])
+      this.$root.devCfg.deamHour = parseInt(deamTH[0])
+      this.$root.devCfg.deamMinu = parseInt(deamTM[0])
+      this.$root.devCfg.firsThou = parseInt(firsTH[0])
+      this.$root.devCfg.firsTmin = parseInt(firsTM[0])
+      this.$root.devCfg.firsPhou = parseInt(firsPH[0])
+      this.$root.devCfg.firsPmin = parseInt(firsPM[0])
+      this.$root.devCfg.secsThou = parseInt(secsTH[0])
+      this.$root.devCfg.secsTmin = parseInt(secsTM[0])
+      this.$root.devCfg.secsPhou = parseInt(secsPH[0])
+      this.$root.devCfg.secsPmin = parseInt(secsPM[0])
+      this.$root.devCfg.tempUplt *= 10
+      this.$root.devCfg.humdUplt *= 10
+      this.$root.devCfg.fansTemp *= 10
+      this.$root.devCfg.fanbAtem *= 10
+      this.$root.devCfg.fansThum *= 10
+      this.$root.devCfg.fanbAhum *= 10
+      this.$root.devCfg.dehuStvl *= 10
+      this.$root.devCfg.dehuBavl *= 10
+      this.$root.devCfg.resiUplm *= 100
+      this.$root.devCfg.leakUplm *= 100
+      this.$root.devCfg.oxtrUplm *= 10
+      this.$root.devCfg.oxtrDnlm *= 10
+      this.$root.devCfg.trtmUplm *= 10
+      this.$root.devCfg.butmUplm *= 10
+      this.$root.devCfg.trcuUplm *= 10
+      this.$root.devCfg.trvoUplm *= 10
+      this.$root.devCfg.trvoDnlm *= 10
+      this.$root.devCfg.trpfDnlm *= 100
+      // TESTFUNCA()
+      const loading = this.$loading({
+        lock: true,
+        text: '参数修改中...',
+      })
+      // console.log(this.$root.devCfg)
+      this.$axios.post('http://127.0.0.1:5000/SetDevice', this.$root.devCfg)
+      .then(res => {
+        // console.log(res.data == 'OK')
+        if (res.data == 'OK') {
+          this.$axios.get('http://127.0.0.1:5000/GetCfg')
+          .then(res => {
+            this.$root.devCfg = res.data
+            this.$createSave()
+          })
+          loading.close()
+          this.$message({
+            message: '修改成功',
+            type: 'success',
+            showClose: true,
+            offset: '75'
+          })
+        } else {
+          this.$axios.get('http://127.0.0.1:5000/GetCfg')
+          .then(res => {
+            this.$root.devCfg = res.data
+            this.$createSave()
+          })
+          loading.close()
+          this.$message({
+            message: '修改失败',
+            type: 'error',
+            showClose: true,
+            offset: '75'
+          })
+        }
+      })
+      .catch(err => {
+        this.$axios.get('http://127.0.0.1:5000/GetCfg')
+        .then(res => {
+          this.$root.devCfg = res.data
+          this.$createSave()
+        })
+        // this.$axios.get('dev/GetCfg').then(res => (this.$root.devCfg = res.data))
+        loading.close()
+        this.$message({
+          message: 'err',
+          type: 'error',
+          showClose: true,
+          offset: '75'
+        })
+      })
+    },
+    // TESTFUNC() {
+      // var hour = this.atamTime.match(/^[0-2][0-9]/)
+      // var min = this.atamTime.match(/[0-5][0-9]$/)
+      // console.log(hour)
+      // console.log(this.$root.devCfg.thunUplm)
+    // },
+    // TESTFUNCA() {
+      // console.log(this.$root.devCfg.atamHour)
+      // console.log(this.$root.devCfg.atamMinu)
+      // console.log(this.$root.devCfg.deamHour)
+      // console.log(this.$root.devCfg.deamMinu)
+      // console.log(this.$root.devCfg.firsThou)
+      // console.log(this.$root.devCfg.firsTmin)
+      // console.log(this.$root.devCfg.firsPhou)
+      // console.log(this.$root.devCfg.firsPmin)
+      // console.log(this.$root.devCfg.secsThou)
+      // console.log(this.$root.devCfg.secsTmin)
+      // console.log(this.$root.devCfg.secsPhou)
+      // console.log(this.$root.devCfg.secsPmin)
+      // var atamTH = this.atamTime.match(/^[0-9]{1,2}/)
+      // var atamTM = this.atamTime.match(/[0-9]{1,2}$/)
+      // var deamTH = this.deamTime.match(/^[0-9]{1,2}/)
+      // var deamTM = this.deamTime.match(/[0-9]{1,2}$/)
+      // var firsTH = this.firsTtim.match(/^[0-9]{1,2}/)
+      // var firsTM = this.firsTtim.match(/[0-9]{1,2}$/)
+      // var firsPH = this.firsPtim.match(/^[0-9]{1,2}/)
+      // var firsPM = this.firsPtim.match(/[0-9]{1,2}$/)
+      // var secsTH = this.secsTtim.match(/^[0-9]{1,2}/)
+      // var secsTM = this.secsTtim.match(/[0-9]{1,2}$/)
+      // var secsPH = this.secsPtim.match(/^[0-9]{1,2}/)
+      // var secsPM = this.secsPtim.match(/[0-9]{1,2}$/)
+      // console.log(atamTH[0])
+      // console.log(atamTM[0])
+      // console.log(deamTH[0])
+      // console.log(deamTM[0])
+      // console.log(firsTH[0])
+      // console.log(firsTM[0])
+      // console.log(firsPH[0])
+      // console.log(firsPM[0])
+      // console.log(secsTH[0])
+      // console.log(secsTM[0])
+      // console.log(secsPH[0])
+      // console.log(secsPM[0])
+    // }
   },
 }
 </script>
@@ -378,5 +526,10 @@ export default {
 #saveBtn
   position absolute
   right 40px
+  top 90px
+
+#saveBtnA
+  position absolute
+  right 140px
   top 90px
 </style>
