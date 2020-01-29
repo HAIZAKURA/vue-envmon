@@ -10,7 +10,7 @@
             <div>
               <el-form ref="LoginForm" :model="loginForm">
                 <el-form-item>
-                  <el-input type="text" v-model="loginForm.userName" placeholder="用户名"></el-input>
+                  <el-input type="text" v-model="loginForm.userName" placeholder="用户名" autofocus="true"></el-input>
                 </el-form-item>
                 <el-form-item>
                   <el-input type="password" v-model="loginForm.userPass" placeholder="密码" show-password></el-input>
@@ -52,7 +52,7 @@ export default {
   },
   methods: {
     login() {
-      this.$axios.get('server/api/findUser/'+this.loginForm.userName).then(res => {
+      this.$axios.get('http://127.0.0.1:3000/api/findUser/' + this.loginForm.userName).then(res => {
         // console.log(res)
         if (res.data == null) {
           this.$message({
