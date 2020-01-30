@@ -94,7 +94,6 @@
                     format="yyyy-MM-dd"
                     value-format="yyyy-MM-dd HH:mm:ss"
                     :default-time="['00:00:00', '23:59:59']"
-                    :picker-options="pickerOptions"
                   >
                   </el-date-picker>
                 </el-col>
@@ -186,13 +185,7 @@ export default {
       dialogAddAcc: false,
       dialogDelAcc: false,
       formLabelWidth: '40px',
-      dateValue: '',
-      pickerOptions: {
-        disabledDate(time) {
-          return time.getTime() > Date.now();
-          //设置不可点击时间为今天之后的时间
-        }
-      }
+      dateValue: ''
     }
   },
   mounted: function() {
