@@ -51,6 +51,7 @@
           </el-menu>
           <!-- <el-button id="testBtn" type="danger" @click="testBtn()">TEST</el-button> -->
           <el-button v-if="this.pow != '0'" id="logOut" type="danger" @click="logOut()">登出</el-button>
+          <el-button id="osk" type="primary" @click="osk()">键盘</el-button>
         </div>
         <br />
         <p style="display:none">{{ this.pow }}</p>
@@ -122,6 +123,10 @@ export default {
       let exec = require('child_process').exec;
       exec('C:\\air.lnk')
     },
+    osk() {
+      let exec = require('child_process').exec;
+      exec('OSK')
+    },
     // getDevStatus() {
     //   this.$axios.get('dev/GetStatus').then(res => (this.$root.devStatus = res.data))
     // },
@@ -188,6 +193,11 @@ a {
   right 120px
 
 #logOut
+  position absolute
+  top 12px
+  right 120px
+
+#osk
   position absolute
   top 12px
   right 30px
