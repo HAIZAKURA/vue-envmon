@@ -118,7 +118,7 @@
     >
       <el-form :model="addForm" ref="addForm">
         <el-form-item label="卡号" :label-width="formLabelWidth" prop="cardIdno">
-          <el-input v-model="addForm.cardIdno" autocomplete="off">
+          <el-input v-model="addForm.cardIdno" autocomplete="off" autofocus>
             <el-button slot="append" @click="getCardId()">获取卡号</el-button>
           </el-input>
         </el-form-item>

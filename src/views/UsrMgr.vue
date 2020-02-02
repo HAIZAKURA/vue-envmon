@@ -68,7 +68,7 @@
     >
       <el-form :model="addForm" ref="addForm">
         <el-form-item label="姓名" :label-width="formLabelWidth" prop="userName">
-          <el-input v-model="addForm.userName" autocomplete="off"></el-input>
+          <el-input v-model="addForm.userName" autocomplete="off" autofocus></el-input>
         </el-form-item>
         <el-form-item label="密码" :label-width="formLabelWidth" prop="userPass">
           <el-input v-model="addForm.userPass" autocomplete="off"></el-input>
