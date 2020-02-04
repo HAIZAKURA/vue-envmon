@@ -1,26 +1,33 @@
+# Completed!!!
 # vue-envmon
 ## Only front-end GUI
 
 ### Developed with
 ```
-Node.js + Vue.js + Electron + Express + MongoDB
+Node.js + Vue.js + Element UI + Electron
 ```
 
-## Project ready
+## back-end Server (will not to be presented)
 ```
-Install MongoDB
-Creat database 'envmon'
-Creat collection 'users'
-Insert some documents into 'users'
-```
-## Document's format
-```
-{
-    "userName": "admin",
-    "userPass": "123456",
-    "userDept": "admin",
-    "userPowr": "3"
-}
+.
+├── MongoDB  //System's Database.
+│   └── envmon
+|       ├── users
+|       ├── cards
+|       ├── sign
+|       ├── data
+|       └── cardRcc
+|
+├── Node.js  //The tool to communicate with database.
+|   ├── user
+|   ├── card
+|   ├── sign
+|   ├── data
+|   └── cardRcc
+|
+└── Python  // The tool to communicate with device.
+    ├── serverRes  // The module to communicate by ModBus RTU.
+    └── accCon // The door access control module.
 ```
 
 ## Project setup
@@ -30,7 +37,6 @@ yarn
 
 ### Compiles and hot-reloads for development
 ```
-node app.js
 yarn run electron:serve
 ```
 
