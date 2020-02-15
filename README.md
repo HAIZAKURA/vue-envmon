@@ -2,9 +2,9 @@
 # vue-envmon
 ## Only front-end GUI
 
-### Developed with
+### Developed with (front-end)
 ```
-Node.js + Vue.js + Element UI + Electron
+Electron + Vue.js + Element UI
 ```
 
 ## back-end Server (will not to be presented)
