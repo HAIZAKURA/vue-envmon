@@ -3,43 +3,44 @@
     <el-row :gutter="20">
       <el-col :span="12">
 
+        <div v-if="$root.showMod.tempOnee || $root.showMod.tempTwoo || $root.showMod.tempThre || $root.showMod.humdOnee || $root.showMod.humdTwoo || $root.showMod.humdThre">
         <el-card class="box-card">
           <div slot="header" class="clearfix">
             <span class="card-header">环境温湿度</span>
           </div>
           <div class="text item">
             <el-row :gutter="2">
-              <el-col :span="4">
+              <el-col :span="4" v-if="$root.showMod.tempOnee">
                 <span class="item-title">温度一</span>
                 <p class="item-value">{{ $root.devStatus.tempOnee }}&nbsp;<small>&#176;C</small></p>
                 <p v-if="$root.devStatus.tempOnee > $root.devCfg.tempUplt"><i class="el-icon-error" /></p>
                 <p v-else><i class="el-icon-success" /></p>
               </el-col>
-              <el-col :span="4">
+              <el-col :span="4" v-if="$root.showMod.tempTwoo">
                 <span class="item-title">温度二</span>
                 <p class="item-value">{{ $root.devStatus.tempTwoo }}&nbsp;<small>&#176;C</small></p>
                 <p v-if="$root.devStatus.tempTwoo > $root.devCfg.tempUplt"><i class="el-icon-error" /></p>
                 <p v-else><i class="el-icon-success" /></p>
               </el-col>
-              <el-col :span="4">
+              <el-col :span="4" v-if="$root.showMod.tempThre">
                 <span class="item-title">温度三</span>
                 <p class="item-value">{{ $root.devStatus.tempThre }}&nbsp;<small>&#176;C</small></p>
                 <p v-if="$root.devStatus.tempThre > $root.devCfg.tempUplt"><i class="el-icon-error" /></p>
                 <p v-else><i class="el-icon-success" /></p>
               </el-col>
-              <el-col :span="4">
+              <el-col :span="4" v-if="$root.showMod.humdOnee">
                 <span class="item-title">湿度一</span>
                 <p class="item-value">{{ $root.devStatus.humdOnee }}&nbsp;<small>&#37;</small></p>
                 <p v-if="$root.devStatus.humdOnee > $root.devCfg.humdUplt"><i class="el-icon-error" /></p>
                 <p v-else><i class="el-icon-success" /></p>
               </el-col>
-              <el-col :span="4">
+              <el-col :span="4" v-if="$root.showMod.humdTwoo">
                 <span class="item-title">湿度二</span>
                 <p class="item-value">{{ $root.devStatus.humdTwoo }}&nbsp;<small>&#37;</small></p>
                 <p v-if="$root.devStatus.humdTwoo > $root.devCfg.humdUplt"><i class="el-icon-error" /></p>
                 <p v-else><i class="el-icon-success" /></p>
               </el-col>
-              <el-col :span="4">
+              <el-col :span="4" v-if="$root.showMod.humdThre">
                 <span class="item-title">湿度三</span>
                 <p class="item-value">{{ $root.devStatus.humdThre }}&nbsp;<small>&#37;</small></p>
                 <p v-if="$root.devStatus.humdThre > $root.devCfg.humdUplt"><i class="el-icon-error" /></p>
@@ -48,34 +49,35 @@
             </el-row>
           </div>
         </el-card>
-
         <br /><br />
+        </div>
 
+        <div v-if="$root.showMod.sftrOnee || $root.showMod.sftrTwoo || $root.showMod.sftrThre || $root.showMod.sftrFour">
         <el-card class="box-card">
           <div slot="header" class="clearfix">
             <span class="card-header">SF<small>6</small>&nbsp;浓度</span>
           </div>
           <div class="text item">
             <el-row :gutter="2">
-              <el-col :span="6">
+              <el-col :span="6" v-if="$root.showMod.sftrOnee">
                 <span class="item-title">浓度一</span>
                 <p class="item-value">{{ $root.devStatus.sftrOnee }}&nbsp;<small>PPm</small></p>
                 <p v-if="$root.devStatus.sftrOnee > $root.devCfg.sfupLimt"><i class="el-icon-error" /></p>
                 <p v-else><i class="el-icon-success" /></p>
               </el-col>
-              <el-col :span="6">
+              <el-col :span="6" v-if="$root.showMod.sftrTwoo">
                 <span class="item-title">浓度二</span>
                 <p class="item-value">{{ $root.devStatus.sftrTwoo }}&nbsp;<small>PPm</small></p>
                 <p v-if="$root.devStatus.sftrTwoo > $root.devCfg.sfupLimt"><i class="el-icon-error" /></p>
                 <p v-else><i class="el-icon-success" /></p>
               </el-col>
-              <el-col :span="6">
+              <el-col :span="6" v-if="$root.showMod.sftrThre">
                 <span class="item-title">浓度三</span>
                 <p class="item-value">{{ $root.devStatus.sftrThre }}&nbsp;<small>PPm</small></p>
                 <p v-if="$root.devStatus.sftrThre > $root.devCfg.sfupLimt"><i class="el-icon-error" /></p>
                 <p v-else><i class="el-icon-success" /></p>
               </el-col>
-              <el-col :span="6">
+              <el-col :span="6" v-if="$root.showMod.sftrFour">
                 <span class="item-title">浓度四</span>
                 <p class="item-value">{{ $root.devStatus.sftrFour }}&nbsp;<small>PPm</small></p>
                 <p v-if="$root.devStatus.sftrFour > $root.devCfg.sfupLimt"><i class="el-icon-error" /></p>
@@ -84,16 +86,17 @@
             </el-row>
           </div>
         </el-card>
-
         <br /><br />
+        </div>
 
+        <div v-if="$root.showMod.fansTate || $root.showMod.sffAnste || $root.showMod.dehuStae || $root.showMod.pumpStae">
         <el-card class="box-card">
           <div slot="header" class="clearfix">
             <span class="card-header">设备控制</span>
           </div>
           <div class="text item">
             <el-row :gutter="2">
-              <el-col :span="6">
+              <el-col :span="6" v-if="$root.showMod.fansTate">
                 <span class="item-title">排风机</span>
                 <p>
                   <el-switch
@@ -108,7 +111,7 @@
                   </el-switch>
                 </p>
               </el-col>
-              <el-col :span="6">
+              <el-col :span="6" v-if="$root.showMod.sffAnste">
                 <span class="item-title">SF<small>6</small>风机</span>
                 <p>
                   <el-switch
@@ -123,7 +126,7 @@
                   </el-switch>
                 </p>
               </el-col>
-              <el-col :span="6">
+              <el-col :span="6" v-if="$root.showMod.dehuStae">
                 <span class="item-title">除湿机</span>
                 <p>
                   <el-switch
@@ -138,7 +141,7 @@
                   </el-switch>
                 </p>
               </el-col>
-              <el-col :span="6">
+              <el-col :span="6" v-if="$root.showMod.pumpStae">
                 <span class="item-title">抽水泵</span>
                 <p>
                   <el-switch
@@ -156,41 +159,43 @@
             </el-row>
           </div>
         </el-card>
+        </div>
 
       </el-col>
       <el-col :span="12">
 
+        <div v-if="$root.showMod.wtlvOnee || $root.showMod.wtlvTwoo || $root.showMod.wtlvThre || $root.showMod.wtlvFour || $root.showMod.wtlvFive">
         <el-card class="box-card">
           <div slot="header" class="clearfix">
             <span class="card-header">电缆沟水位</span>
           </div>
           <div class="text item">
             <el-row :gutter="2">
-              <el-col :span="4">
+              <el-col :span="4" v-if="$root.showMod.wtlvOnee">
                 <span class="item-title">一号点</span>
                 <p class="item-value">{{ $root.devStatus.wtlvOnee }}&nbsp;<small>mm</small></p>
                 <p v-if="$root.devStatus.wtlvOnee > $root.devCfg.soakWtlv"><i class="el-icon-error" /></p>
                 <p v-else><i class="el-icon-success" /></p>
               </el-col>
-              <el-col :span="4" :offset="1">
+              <el-col :span="4" :offset="1" v-if="$root.showMod.wtlvTwoo">
                 <span class="item-title">二号点</span>
                 <p class="item-value">{{ $root.devStatus.wtlvTwoo }}&nbsp;<small>mm</small></p>
                 <p v-if="$root.devStatus.wtlvTwoo > $root.devCfg.soakWtlv"><i class="el-icon-error" /></p>
                 <p v-else><i class="el-icon-success" /></p>
               </el-col>
-              <el-col :span="4" :offset="1">
+              <el-col :span="4" :offset="1" v-if="$root.showMod.wtlvThre">
                 <span class="item-title">三号点</span>
                 <p class="item-value">{{ $root.devStatus.wtlvThre }}&nbsp;<small>mm</small></p>
                 <p v-if="$root.devStatus.wtlvThre > $root.devCfg.soakWtlv"><i class="el-icon-error" /></p>
                 <p v-else><i class="el-icon-success" /></p>
               </el-col>
-              <el-col :span="4" :offset="1">
+              <el-col :span="4" :offset="1" v-if="$root.showMod.wtlvFour">
                 <span class="item-title">四号点</span>
                 <p class="item-value">{{ $root.devStatus.wtlvFour }}&nbsp;<small>mm</small></p>
                 <p v-if="$root.devStatus.wtlvFour > $root.devCfg.soakWtlv"><i class="el-icon-error" /></p>
                 <p v-else><i class="el-icon-success" /></p>
               </el-col>
-              <el-col :span="4" :offset="1">
+              <el-col :span="4" :offset="1" v-if="$root.showMod.wtlvFive">
                 <span class="item-title">五号点</span>
                 <p class="item-value">{{ $root.devStatus.wtlvFive }}&nbsp;<small>mm</small></p>
                 <p v-if="$root.devStatus.wtlvFive > $root.devCfg.soakWtlv"><i class="el-icon-error" /></p>
@@ -199,34 +204,35 @@
             </el-row>
           </div>
         </el-card>
-
         <br /><br />
+        </div>
 
+        <div v-if="$root.showMod.oxtrOnee || $root.showMod.oxtrTwoo || $root.showMod.oxtrThre || $root.showMod.oxtrFour">
         <el-card class="box-card">
           <div slot="header" class="clearfix">
             <span class="card-header">O<small>3</small>&nbsp;浓度</span>
           </div>
           <div class="text item">
             <el-row :gutter="2">
-              <el-col :span="6">
+              <el-col :span="6" v-if="$root.showMod.oxtrOnee">
                 <span class="item-title">浓度一</span>
                 <p class="item-value">{{ $root.devStatus.oxtrOnee }}&nbsp;<small>PPm</small></p>
                 <p v-if="$root.devStatus.oxtrOnee > $root.devCfg.oxtrUplm"><i class="el-icon-error" /></p>
                 <p v-else><i class="el-icon-success" /></p>
               </el-col>
-              <el-col :span="6">
+              <el-col :span="6" v-if="$root.showMod.oxtrTwoo">
                 <span class="item-title">浓度二</span>
                 <p class="item-value">{{ $root.devStatus.oxtrTwoo }}&nbsp;<small>PPm</small></p>
                 <p v-if="$root.devStatus.oxtrTwoo > $root.devCfg.oxtrUplm"><i class="el-icon-error" /></p>
                 <p v-else><i class="el-icon-success" /></p>
               </el-col>
-              <el-col :span="6">
+              <el-col :span="6" v-if="$root.showMod.oxtrThre">
                 <span class="item-title">浓度三</span>
                 <p class="item-value">{{ $root.devStatus.oxtrThre }}&nbsp;<small>PPm</small></p>
                 <p v-if="$root.devStatus.oxtrThre > $root.devCfg.oxtrUplm"><i class="el-icon-error" /></p>
                 <p v-else><i class="el-icon-success" /></p>
               </el-col>
-              <el-col :span="6">
+              <el-col :span="6" v-if="$root.showMod.oxtrFour">
                 <span class="item-title">浓度四</span>
                 <p class="item-value">{{ $root.devStatus.oxtrFour }}&nbsp;<small>PPm</small></p>
                 <p v-if="$root.devStatus.oxtrFour > $root.devCfg.oxtrUplm"><i class="el-icon-error" /></p>
@@ -235,16 +241,17 @@
             </el-row>
           </div>
         </el-card>
-
         <br /><br />
+        </div>
 
+        <div v-if="$root.showMod.maauStae || $root.showMod.aminStae || $root.showMod.signStae">
         <el-card class="box-card">
           <div slot="header" class="clearfix">
             <span class="card-header">状态切换及巡查签到</span>
           </div>
           <div class="text item">
             <el-row :gutter="2">
-              <el-col :span="6">
+              <el-col :span="6" v-if="$root.showMod.maauStae">
                 <p v-if="$root.devOth.maauStae">
                   <el-button type="danger" @click="maSwitch()">M&nbsp;A&nbsp;N</el-button>
                 </p>
@@ -252,17 +259,17 @@
                   <el-button type="success" @click="maSwitch()">AUTO</el-button>
                 </p>
               </el-col>
-              <el-col :span="6">
+              <el-col :span="6" v-if="$root.showMod.aminStae">
                 <p>
                   <el-button @click="defSwitch()">布撤防切换</el-button>
                 </p>
               </el-col>
-              <el-col :span="6">
+              <el-col :span="6" v-if="$root.showMod.aminStae">
                 <span class="item-title">布防状态</span>
                 <p v-if="!$root.devOth.aminStae"><i class="el-icon-error" /></p>
                 <p v-else><i class="el-icon-success" /></p>
               </el-col>
-              <el-col :span="6">
+              <el-col :span="6" v-if="$root.showMod.signStae">
                 <p>
                   <el-button type="danger" @click="signIn()">签到</el-button>
                 </p>
@@ -270,6 +277,7 @@
             </el-row>
           </div>
         </el-card>
+        </div>
 
       </el-col>
     </el-row>

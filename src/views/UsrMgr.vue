@@ -113,6 +113,93 @@
         <el-button type="primary" @click="delUser()">确 定</el-button>
       </div>
     </el-dialog>
+    <!--删除用户-->
+    <el-dialog
+      title="模块显示设置"
+      :visible.sync="dialogModVisable"
+      width="40%"
+      center
+    >
+      <el-tabs v-model="activePageName" type="card">
+        <el-tab-pane label="环 境 监 控 页 面" name="first">
+          <el-divider>环境温湿度</el-divider>
+          <el-checkbox v-model="$root.showMod.tempOnee">温度一</el-checkbox>
+          <el-checkbox v-model="$root.showMod.tempTwoo">温度二</el-checkbox>
+          <el-checkbox v-model="$root.showMod.tempThre">温度三</el-checkbox>
+          <el-checkbox v-model="$root.showMod.humdOnee">湿度一</el-checkbox>
+          <el-checkbox v-model="$root.showMod.humdTwoo">湿度二</el-checkbox>
+          <el-checkbox v-model="$root.showMod.humdThre">湿度三</el-checkbox>
+          <el-divider>SF<small>6</small>&nbsp;浓度</el-divider>
+          <el-checkbox v-model="$root.showMod.sftrOnee">浓度一</el-checkbox>
+          <el-checkbox v-model="$root.showMod.sftrTwoo">浓度二</el-checkbox>
+          <el-checkbox v-model="$root.showMod.sftrThre">浓度三</el-checkbox>
+          <el-checkbox v-model="$root.showMod.sftrFour">浓度四</el-checkbox>
+          <el-divider>设备控制</el-divider>
+          <el-checkbox v-model="$root.showMod.fansTate">排风机</el-checkbox>
+          <el-checkbox v-model="$root.showMod.sffAnste">SF<small>6</small>风机</el-checkbox>
+          <el-checkbox v-model="$root.showMod.dehuStae">除湿机</el-checkbox>
+          <el-checkbox v-model="$root.showMod.pumpStae">抽水泵</el-checkbox>
+          <el-divider>电缆沟水位</el-divider>
+          <el-checkbox v-model="$root.showMod.wtlvOnee">一号点</el-checkbox>
+          <el-checkbox v-model="$root.showMod.wtlvTwoo">二号点</el-checkbox>
+          <el-checkbox v-model="$root.showMod.wtlvThre">三号点</el-checkbox>
+          <el-checkbox v-model="$root.showMod.wtlvFour">四号点</el-checkbox>
+          <el-checkbox v-model="$root.showMod.wtlvFive">五号点</el-checkbox>
+          <el-divider>O<small>3</small>&nbsp;浓度</el-divider>
+          <el-checkbox v-model="$root.showMod.oxtrOnee">浓度一</el-checkbox>
+          <el-checkbox v-model="$root.showMod.oxtrTwoo">浓度二</el-checkbox>
+          <el-checkbox v-model="$root.showMod.oxtrThre">浓度三</el-checkbox>
+          <el-checkbox v-model="$root.showMod.oxtrFour">浓度四</el-checkbox>
+          <el-divider>状态切换及巡查签到</el-divider>
+          <el-checkbox v-model="$root.showMod.maauStae">手自切换</el-checkbox>
+          <el-checkbox v-model="$root.showMod.aminStae">布防</el-checkbox>
+          <el-checkbox v-model="$root.showMod.signStae">签到</el-checkbox>
+        </el-tab-pane>
+        <el-tab-pane label="配 电 监 控 页 面" name="second">
+          <el-divider>配电设备温度</el-divider>
+          <el-checkbox v-model="$root.showMod.trasApha">变压器A相</el-checkbox>
+          <el-checkbox v-model="$root.showMod.trasBpha">变压器B相</el-checkbox>
+          <el-checkbox v-model="$root.showMod.trasCpha">变压器C相</el-checkbox>
+          <el-checkbox v-model="$root.showMod.bbarAtem">母排A相</el-checkbox>
+          <el-checkbox v-model="$root.showMod.bbarBtem">母排B相</el-checkbox>
+          <el-checkbox v-model="$root.showMod.bbarCtem">母排C相</el-checkbox>
+          <el-divider>设备电源、防盗、火灾</el-divider>
+          <el-checkbox v-model="$root.showMod.atspAlam">ATS电源</el-checkbox>
+          <el-checkbox v-model="$root.showMod.hppwAlam">HP电源</el-checkbox>
+          <el-checkbox v-model="$root.showMod.fppwAlam">FP电源</el-checkbox>
+          <el-checkbox v-model="$root.showMod.dtupAlam">DTU电源</el-checkbox>
+          <el-checkbox v-model="$root.showMod.illeAlam">非法入侵</el-checkbox>
+          <el-checkbox v-model="$root.showMod.smokAlam">烟雾报警</el-checkbox>
+          <el-divider>UPS输出</el-divider>
+          <el-checkbox v-model="$root.showMod.upsoVolt">电压</el-checkbox>
+          <el-checkbox v-model="$root.showMod.upsoCurr">电流</el-checkbox>
+          <el-checkbox v-model="$root.showMod.upsoFreq">频率</el-checkbox>
+          <el-checkbox v-model="$root.showMod.upsoPowe">功率</el-checkbox>
+          <el-divider>变压器输出</el-divider>
+          <el-checkbox v-model="$root.showMod.tratCurr">电流</el-checkbox>
+          <el-checkbox v-model="$root.showMod.traoVolt">电压</el-checkbox>
+          <el-checkbox v-model="$root.showMod.traoFreq">频率</el-checkbox>
+          <el-checkbox v-model="$root.showMod.traoPfcc">功率因数</el-checkbox>
+          <el-checkbox v-model="$root.showMod.trasPwhb">有功电度</el-checkbox>
+          <el-checkbox v-model="$root.showMod.resiCurr">剩余电流</el-checkbox>
+          <el-divider>避雷装置</el-divider>
+          <el-checkbox v-model="$root.showMod.leakCurr">泄露电流</el-checkbox>
+          <el-checkbox v-model="$root.showMod.thunStri">雷击次数</el-checkbox>
+          <el-checkbox v-model="$root.showMod.spdhAlam">SPD脱扣</el-checkbox>
+          <el-checkbox v-model="$root.showMod.scbpAlam">SCB状态</el-checkbox>
+          <el-divider>UPS其他状态</el-divider>
+          <el-checkbox v-model="$root.showMod.upsoLoad">负荷率</el-checkbox>
+          <el-checkbox v-model="$root.showMod.upsbTemp">电池温度</el-checkbox>
+          <el-checkbox v-model="$root.showMod.upsbVolt">电池电压</el-checkbox>
+          <el-checkbox v-model="$root.showMod.upsfCode">故障码</el-checkbox>
+        </el-tab-pane>
+      </el-tabs>
+      <div slot="footer" class="dialog-footer">
+        <el-button @click="dialogModVisable = false">取 消</el-button>
+        <el-button type="primary" @click="setShowMod()">确 定</el-button>
+      </div>
+    </el-dialog>
+    <el-button type="primary" class="modv-btn" @click="dialogModVisable = true">模块显示设置</el-button>
   </div>
 </template>
 
@@ -126,6 +213,8 @@ export default {
       userData: [{}],
       dialogAddUser: false,
       dialogDelUser: false,
+      dialogModVisable: false,
+      activePageName: 'first',
       addForm: {
         userName: '',
         userPass: '',
@@ -233,6 +322,29 @@ export default {
         var toExcel = new ExportJsonExcel(option); //new
         toExcel.saveExcel(); //保存
       })
+    },
+    setShowMod() {
+      this.$axios.post('http://127.0.0.1:3000/api/setVisa', this.$root.showMod)
+      .then(res => {
+        if (res.data.status == "success") {
+          this.dialogModVisable = false
+          this.$message({
+            message: '设置成功',
+            type: 'success',
+            showClose: true,
+            offset: '75'
+          })
+          this.$axios.get('http://127.0.0.1:3000/api/visa').then(res => (this.$root.showMod = res.data))
+        } else {
+          this.$message({
+            message: '设置失败',
+            type: 'error',
+            showClose: true,
+            offset: '75'
+          })
+          this.$axios.get('http://127.0.0.1:3000/api/visa').then(res => (this.$root.showMod = res.data))
+        }
+      })
     }
   }
 }
@@ -247,4 +359,9 @@ export default {
 
 .card-btn
   width 100%
+
+.modv-btn
+  position absolute
+  right 30px
+  top 80px
 </style>

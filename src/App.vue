@@ -80,6 +80,7 @@ export default {
     this.setUid(null)
     this.setNam(null)
     this.setPow('0')
+    this.$axios.get('http://127.0.0.1:3000/api/visa').then(res => (this.$root.showMod = res.data))
   },
   mounted: function() {
     // console.log(this.pow)
