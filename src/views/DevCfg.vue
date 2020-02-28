@@ -16,11 +16,13 @@
                   <el-row :gutter="5">
                     <el-col :span="12">
                       <el-input v-model="$root.devCfg.fansTemp">
+                      <!-- <el-input v-model="curDevCfg.fansTemp"> -->
                         <template slot="prepend">温度</template>
                       </el-input>
                     </el-col>
                     <el-col :span="12">
                       <el-input v-model="$root.devCfg.fanbAtem">
+                      <!-- <el-input v-model="curDevCfg.fanbAtem"> -->
                         <template slot="prepend">回差</template>
                       </el-input>
                     </el-col>
@@ -32,11 +34,13 @@
                   <el-row :gutter="5">
                     <el-col :span="12">
                       <el-input v-model="$root.devCfg.fansThum">
+                      <!-- <el-input v-model="curDevCfg.fansThum"> -->
                         <template slot="prepend">湿度</template>
                       </el-input>
                     </el-col>
                     <el-col :span="12">
                       <el-input v-model="$root.devCfg.fanbAhum">
+                      <!-- <el-input v-model="curDevCfg.fanbAhum"> -->
                         <template slot="prepend">回差</template>
                       </el-input>
                     </el-col>
@@ -48,11 +52,13 @@
                   <el-row :gutter="5">
                     <el-col :span="12">
                       <el-input v-model="$root.devCfg.dehuStvl">
+                      <!-- <el-input v-model="curDevCfg.dehuStvl"> -->
                         <template slot="prepend">湿度</template>
                       </el-input>
                     </el-col>
                     <el-col :span="12">
                       <el-input v-model="$root.devCfg.dehuBavl">
+                      <!-- <el-input v-model="curDevCfg.dehuBavl"> -->
                         <template slot="prepend">回差</template>
                       </el-input>
                     </el-col>
@@ -64,11 +70,13 @@
                   <el-row :gutter="5">
                     <el-col :span="12">
                       <el-input v-model="$root.devCfg.pumpStvl">
+                      <!-- <el-input v-model="curDevCfg.pumpStvl"> -->
                         <template slot="prepend">水位</template>
                       </el-input>
                     </el-col>
                     <el-col :span="12">
                       <el-input v-model="$root.devCfg.pumpBavl">
+                      <!-- <el-input v-model="curDevCfg.pumpBavl"> -->
                         <template slot="prepend">回差</template>
                       </el-input>
                     </el-col>
@@ -183,6 +191,7 @@
                   <span class="item-title">通风时间</span>
                   <br /><br />
                   <el-input v-model="$root.devCfg.ventTime">
+                  <!-- <el-input v-model="curDevCfg.ventTime"> -->
                     <template slot="append">Min</template>
                   </el-input>
                 </el-col>
@@ -190,6 +199,7 @@
                   <span class="item-title">SF<small>6</small>强排时间</span>
                   <br /><br />
                   <el-input v-model="$root.devCfg.sfvtTime">
+                  <!-- <el-input v-model="curDevCfg.sfvtTime"> -->
                     <template slot="append">Min</template>
                   </el-input>
                 </el-col>
@@ -197,6 +207,7 @@
                   <span class="item-title">开门触发时间</span>
                   <br /><br />
                   <el-input v-model="$root.devCfg.doopTime">
+                  <!-- <el-input v-model="curDevCfg.doopTime"> -->
                     <template slot="append">S</template>
                   </el-input>
                 </el-col>
@@ -223,46 +234,55 @@
                   <span class="item-title">环境温度上限</span>
                   <p class="unit">&#176;C</p>
                   <el-input v-model="$root.devCfg.tempUplt"></el-input>
+                  <!-- <el-input v-model="curDevCfg.tempUplt"></el-input> -->
                 </el-col>
                 <el-col :span="2">
                   <span class="item-title">环境湿度上限</span>
                   <p class="unit">&#37;</p>
                   <el-input v-model="$root.devCfg.humdUplt"></el-input>
+                  <!-- <el-input v-model="curDevCfg.humdUplt"></el-input> -->
                 </el-col>
                 <el-col :span="3">
                   <span class="item-title">紧急水位上限</span>
                   <p class="unit">mm</p>
                   <el-input v-model="$root.devCfg.urgeWtlv"></el-input>
+                  <!-- <el-input v-model="curDevCfg.urgeWtlv"></el-input> -->
                 </el-col>
                 <el-col :span="3">
                   <span class="item-title">警戒水位上限</span>
                   <p class="unit">mm</p>
                   <el-input v-model="$root.devCfg.alamWtlv"></el-input>
+                  <!-- <el-input v-model="curDevCfg.alamWtlv"></el-input> -->
                 </el-col>
                 <el-col :span="3">
                   <span class="item-title">预警水位上限</span>
                   <p class="unit">mm</p>
                   <el-input v-model="$root.devCfg.warnWtlv"></el-input>
+                  <!-- <el-input v-model="curDevCfg.warnWtlv"></el-input> -->
                 </el-col>
                 <el-col :span="3">
                   <span class="item-title">浸水水位上限</span>
                   <p class="unit">mm</p>
                   <el-input v-model="$root.devCfg.soakWtlv"></el-input>
+                  <!-- <el-input v-model="curDevCfg.soakWtlv"></el-input> -->
                 </el-col>
                 <el-col :span="3">
                   <span class="item-title">O<small>3</small>浓度上限</span>
                   <p class="unit">PPm</p>
                   <el-input v-model="$root.devCfg.oxtrUplm"></el-input>
+                  <!-- <el-input v-model="curDevCfg.oxtrUplm"></el-input> -->
                 </el-col>
                 <el-col :span="3">
                   <span class="item-title">O<small>3</small>浓度下限</span>
                   <p class="unit">PPm</p>
                   <el-input v-model="$root.devCfg.oxtrDnlm"></el-input>
+                  <!-- <el-input v-model="curDevCfg.oxtrDnlm"></el-input> -->
                 </el-col>
                 <el-col :span="2">
                   <span class="item-title">SF<small>6</small>浓度上限</span>
                   <p class="unit">PPm</p>
                   <el-input v-model="$root.devCfg.sfupLimt"></el-input>
+                  <!-- <el-input v-model="curDevCfg.sfupLimt"></el-input> -->
                 </el-col>
               </el-row>
             </div>
@@ -280,46 +300,55 @@
                   <span class="item-title">变压器温度上限</span>
                   <p class="unit">&#176;C</p>
                   <el-input v-model="$root.devCfg.trtmUplm"></el-input>
+                  <!-- <el-input v-model="curDevCfg.trtmUplm"></el-input> -->
                 </el-col>
                 <el-col :span="2">
                   <span class="item-title">母排温度上限</span>
                   <p class="unit">&#176;C</p>
                   <el-input v-model="$root.devCfg.butmUplm"></el-input>
+                  <!-- <el-input v-model="curDevCfg.butmUplm"></el-input> -->
                 </el-col>
                 <el-col :span="3">
                   <span class="item-title">变压器电流上限</span>
                   <p class="unit">A</p>
                   <el-input v-model="$root.devCfg.trcuUplm"></el-input>
+                  <!-- <el-input v-model="curDevCfg.trcuUplm"></el-input> -->
                 </el-col>
                 <el-col :span="3">
                   <span class="item-title">变压器电压上限</span>
                   <p class="unit">V</p>
                   <el-input v-model="$root.devCfg.trvoUplm"></el-input>
+                  <!-- <el-input v-model="curDevCfg.trvoUplm"></el-input> -->
                 </el-col>
                 <el-col :span="3">
                   <span class="item-title">变压器电压下限</span>
                   <p class="unit">V</p>
                   <el-input v-model="$root.devCfg.trvoDnlm"></el-input>
+                  <!-- <el-input v-model="curDevCfg.trvoDnlm"></el-input> -->
                 </el-col>
                 <el-col :span="2">
                   <span class="item-title">功率因数下限</span>
                   <p class="unit" style="color:#FFFFFF;">trpfDnlm</p>
                   <el-input v-model="$root.devCfg.trpfDnlm"></el-input>
+                  <!-- <el-input v-model="curDevCfg.trpfDnlm"></el-input> -->
                 </el-col>
                 <el-col :span="3">
                   <span class="item-title">火灾剩余电流上限</span>
                   <p class="unit">A</p>
                   <el-input v-model="$root.devCfg.resiUplm"></el-input>
+                  <!-- <el-input v-model="curDevCfg.resiUplm"></el-input> -->
                 </el-col>
                 <el-col :span="3">
                   <span class="item-title">避雷泄露电流上限</span>
                   <p class="unit">mA</p>
                   <el-input v-model="$root.devCfg.leakUplm"></el-input>
+                  <!-- <el-input v-model="curDevCfg.leakUplm"></el-input> -->
                 </el-col>
                 <el-col :span="2">
                   <span class="item-title">雷击次数上限</span>
                   <p class="unit">PCS</p>
                   <el-input v-model="$root.devCfg.thunUplm"></el-input>
+                  <!-- <el-input v-model="curDevCfg.thunUplm"></el-input> -->
                 </el-col>
               </el-row>
             </div>
@@ -357,6 +386,7 @@ export default {
     },
     setDeivce() {
       this.$destorySave()
+      this.$destoryGetInCfg()
       var atamTH = this.atamTime.match(/^[0-9]{1,2}/)
       var atamTM = this.atamTime.match(/[0-9]{1,2}$/)
       var deamTH = this.deamTime.match(/^[0-9]{1,2}/)
@@ -399,20 +429,23 @@ export default {
       this.$root.devCfg.trvoUplm *= 10
       this.$root.devCfg.trvoDnlm *= 10
       this.$root.devCfg.trpfDnlm *= 100
+      for (var item in this.$root.devCfg) {
+        this.$root.devCfg[item] = parseInt(this.$root.devCfg[item])
+      }
       // TESTFUNCA()
       const loading = this.$loading({
         lock: true,
         text: '参数修改中...',
       })
       // console.log(this.$root.devCfg)
-      this.$axios.post('http://127.0.0.1:5000/SetDevice', this.$root.devCfg)
+      this.$axios.post('http://localhost:5000/SetDevice', this.$root.devCfg)
       .then(res => {
-        // console.log(res.data == 'OK')
         if (res.data == 'OK') {
-          this.$axios.get('http://127.0.0.1:5000/GetCfg')
+          this.$axios.get('http://localhost:5000/GetCfg')
           .then(res => {
             this.$root.devCfg = res.data
             this.$createSave()
+            this.$createGetInCfg()
           })
           loading.close()
           this.$message({
@@ -422,10 +455,11 @@ export default {
             offset: '75'
           })
         } else {
-          this.$axios.get('http://127.0.0.1:5000/GetCfg')
+          this.$axios.get('http://localhost:5000/GetCfg')
           .then(res => {
             this.$root.devCfg = res.data
             this.$createSave()
+            this.$createGetInCfg()
           })
           loading.close()
           this.$message({
@@ -437,12 +471,12 @@ export default {
         }
       })
       .catch(err => {
-        this.$axios.get('http://127.0.0.1:5000/GetCfg')
+        this.$axios.get('http://localhost:5000/GetCfg')
         .then(res => {
           this.$root.devCfg = res.data
           this.$createSave()
+          this.$createGetInCfg()
         })
-        // this.$axios.get('dev/GetCfg').then(res => (this.$root.devCfg = res.data))
         loading.close()
         this.$message({
           message: 'err',
@@ -451,51 +485,7 @@ export default {
           offset: '75'
         })
       })
-    },
-    // TESTFUNC() {
-      // var hour = this.atamTime.match(/^[0-2][0-9]/)
-      // var min = this.atamTime.match(/[0-5][0-9]$/)
-      // console.log(hour)
-      // console.log(this.$root.devCfg.thunUplm)
-    // },
-    // TESTFUNCA() {
-      // console.log(this.$root.devCfg.atamHour)
-      // console.log(this.$root.devCfg.atamMinu)
-      // console.log(this.$root.devCfg.deamHour)
-      // console.log(this.$root.devCfg.deamMinu)
-      // console.log(this.$root.devCfg.firsThou)
-      // console.log(this.$root.devCfg.firsTmin)
-      // console.log(this.$root.devCfg.firsPhou)
-      // console.log(this.$root.devCfg.firsPmin)
-      // console.log(this.$root.devCfg.secsThou)
-      // console.log(this.$root.devCfg.secsTmin)
-      // console.log(this.$root.devCfg.secsPhou)
-      // console.log(this.$root.devCfg.secsPmin)
-      // var atamTH = this.atamTime.match(/^[0-9]{1,2}/)
-      // var atamTM = this.atamTime.match(/[0-9]{1,2}$/)
-      // var deamTH = this.deamTime.match(/^[0-9]{1,2}/)
-      // var deamTM = this.deamTime.match(/[0-9]{1,2}$/)
-      // var firsTH = this.firsTtim.match(/^[0-9]{1,2}/)
-      // var firsTM = this.firsTtim.match(/[0-9]{1,2}$/)
-      // var firsPH = this.firsPtim.match(/^[0-9]{1,2}/)
-      // var firsPM = this.firsPtim.match(/[0-9]{1,2}$/)
-      // var secsTH = this.secsTtim.match(/^[0-9]{1,2}/)
-      // var secsTM = this.secsTtim.match(/[0-9]{1,2}$/)
-      // var secsPH = this.secsPtim.match(/^[0-9]{1,2}/)
-      // var secsPM = this.secsPtim.match(/[0-9]{1,2}$/)
-      // console.log(atamTH[0])
-      // console.log(atamTM[0])
-      // console.log(deamTH[0])
-      // console.log(deamTM[0])
-      // console.log(firsTH[0])
-      // console.log(firsTM[0])
-      // console.log(firsPH[0])
-      // console.log(firsPM[0])
-      // console.log(secsTH[0])
-      // console.log(secsTM[0])
-      // console.log(secsPH[0])
-      // console.log(secsPM[0])
-    // }
+    }
   },
 }
 </script>
@@ -526,7 +516,7 @@ export default {
 #saveBtn
   position absolute
   right 40px
-  top 90px
+  top 100px
 
 #saveBtnA
   position absolute

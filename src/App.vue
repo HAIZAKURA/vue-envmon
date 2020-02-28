@@ -80,7 +80,7 @@ export default {
     this.setUid(null)
     this.setNam(null)
     this.setPow('0')
-    this.$axios.get('http://127.0.0.1:3000/api/visa').then(res => (this.$root.showMod = res.data))
+    this.$axios.get('http://localhost:3000/api/visa').then(res => (this.$root.showMod = res.data))
   },
   mounted: function() {
     // console.log(this.pow)
@@ -102,12 +102,15 @@ export default {
       if (key == 3) {
         this.$destoryGet()
         this.$root.getStatus = 0
+        this.$createGetInCfg()
       } else {
         if (this.$root.getStatus == 0) {
-          // this.$createGetDevStatus()
           this.$createGet()
           this.$root.getStatus = 1
+          this.$destoryGetInCfg()
         }
+        // this.$createGet()
+        // this.$destoryGetInCfg()
       }
     },
     logOut() {
@@ -128,37 +131,6 @@ export default {
       let exec = require('child_process').exec;
       exec('OSK')
     },
-    // getDevStatus() {
-    //   this.$axios.get('dev/GetStatus').then(res => (this.$root.devStatus = res.data))
-    // },
-    // getNowTime() {
-    //   let yy = new Date().getFullYear();
-    //   let mm = new Date().getMonth()+1;
-    //   let dd = new Date().getDate();
-    //   let hh = new Date().getHours();
-    //   let mf = new Date().getMinutes()<10 ? '0'+new Date().getMinutes() : new Date().getMinutes();
-    //   let time = yy+'-'+mm+'-'+dd+' '+hh+':'+mf;
-    //   return time
-    // },
-    // saveDevStatus() {
-    //   var saveTimeJson = {
-    //     "saveDate": this.getNowTime(),
-    //     "instDate": new Date()
-    //   }
-    //   var saveDataJson = JSON.parse((JSON.stringify(saveTimeJson) + JSON.stringify(this.$root.devStatus)).replace(/}{/,','));
-    //   // console.log(saveDataJson)
-    //   this.$axios.post('server/api/addData', saveDataJson).then(res => {
-    //     if (res.data.status == "success") {
-    //       // console.log('数据记录成功')
-    //     } else {
-    //       // console.log('数据记录失败，进行重试')
-    //       this.saveDevStatus()
-    //     }
-    //   })
-    // },
-    // testBtn() {
-    //   console.log(this)
-    // },
     ...mapActions(['setUid','setNam','setPow'])
   }
 }
@@ -171,7 +143,7 @@ export default {
   -moz-osx-font-smoothing: grayscale
   text-align: center
   user-select: none
-  margin-top -24px
+  margin-top: -14px
 
 a {
   text-decoration: none;
@@ -195,11 +167,11 @@ a {
 
 #logOut
   position absolute
-  top 12px
+  top 22px
   right 120px
 
 #osk
   position absolute
-  top 12px
+  top 22px
   right 30px
 </style>

@@ -8,7 +8,7 @@ module.exports = {
   publicPath: './',
   devServer: {
     // can be overwritten by process.env.HOST
-    host: '127.0.0.1',  
+    host: 'localhost',  
     port: 8080,
     // proxy: {
     //   '/api': {

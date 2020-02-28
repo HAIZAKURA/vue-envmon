@@ -327,7 +327,7 @@ export default {
       // this.$axios.get('dev/GetStatus').then(res => (this.$root.devStatus = res.data))
     // },
     setSwitch(id) {
-      this.$axios.get('http://127.0.0.1:5000/SetSwitch/' + id)
+      this.$axios.get('http://localhost:5000/SetSwitch/' + id)
       .then(() => {
         // console.log(" Code: " + id)
         this.$createGet()
@@ -365,7 +365,7 @@ export default {
         "signUser": this.nam,
         "instDate": new Date()
       }]
-      this.$axios.post('http://127.0.0.1:3000/api/addSign', addObj).then(res => {
+      this.$axios.post('http://localhost:3000/api/addSign', addObj).then(res => {
         if (res.data.status == "success") {
           this.$destoryGet()
           setTimeout(() => {

@@ -7,7 +7,7 @@
             <div id="accTable">
               <el-table
                 :data="accData"
-                height="500"
+                height="550"
                 border
                 style="width: 100%"
               >
@@ -56,7 +56,7 @@
             <div id="recTable">
               <el-table
                 :data="accRec"
-                height="500"
+                height="550"
                 border
                 style="width: 100%"
               >
@@ -219,7 +219,7 @@ export default {
         type: 'warning',
         showClose: true
       })
-      this.$axios.get("http://127.0.0.1:5000/getCard", {timeout: 10000})
+      this.$axios.get("http://localhost:5000/getCard", {timeout: 10000})
       .then(res => {
         // console.log(res.data)
         this.addForm.cardIdno = this.hex2int(res.data)
@@ -239,7 +239,7 @@ export default {
       })
     },
     queryCard() {
-      this.$axios.get('http://127.0.0.1:3000/api/card').then(res => (this.accData = res.data))
+      this.$axios.get('http://localhost:3000/api/card').then(res => (this.accData = res.data))
     },
     clearAddForm() {
       this.addForm.cardIdno = ''
@@ -278,7 +278,7 @@ export default {
         }
       }
       if (addFlag === 1) {
-        this.$axios.post('http://127.0.0.1:3000/api/addCard', addObj).then(res => {
+        this.$axios.post('http://localhost:3000/api/addCard', addObj).then(res => {
           if (res.data.status == "success") {
             this.dialogAddAcc = false
             this.$message({
@@ -304,7 +304,7 @@ export default {
       }
     },
     delCard() {
-      this.$axios.delete('http://127.0.0.1:3000/api/delCard/' + this.delForm.cardId).then(res => {
+      this.$axios.delete('http://localhost:3000/api/delCard/' + this.delForm.cardId).then(res => {
         if (res.data.status == "success") {
           this.dialogDelAcc = false
           this.$message({
@@ -327,13 +327,13 @@ export default {
       })
     },
     queryCardRcc() {
-      this.$axios.get('http://127.0.0.1:3000/api/CardRcc/')
+      this.$axios.get('http://localhost:3000/api/CardRcc/')
       .then(res => {
         this.accRec = res.data
       })
     },
     reqQueryCardRcc() {
-      this.$axios.get('http://127.0.0.1:3000/api/queryCardRcc/' + this.dateValue[0] + '/' + this.dateValue[1])
+      this.$axios.get('http://localhost:3000/api/queryCardRcc/' + this.dateValue[0] + '/' + this.dateValue[1])
       .then(res => {
         this.accRec = res.data
       })

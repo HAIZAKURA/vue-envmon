@@ -232,10 +232,10 @@ export default {
   },
   methods: {
     queryUsers() {
-      this.$axios.get('http://127.0.0.1:3000/api/user').then(res => (this.userData = res.data))
+      this.$axios.get('http://localhost:3000/api/user').then(res => (this.userData = res.data))
     },
     delUser() {
-      this.$axios.delete('http://127.0.0.1:3000/api/delUser/'+this.delForm.userId).then(res => {
+      this.$axios.delete('http://localhost:3000/api/delUser/'+this.delForm.userId).then(res => {
         if (res.data.status == "success") {
           this.dialogDelUser = false
           this.$message({
@@ -274,7 +274,7 @@ export default {
         }
       }
       if (addFlag === 1) {
-        this.$axios.post('http://127.0.0.1:3000/api/addUser', addObj).then(res => {
+        this.$axios.post('http://localhost:3000/api/addUser', addObj).then(res => {
           if (res.data.status == "success") {
             this.dialogAddUser = false
             this.$message({
@@ -307,7 +307,7 @@ export default {
       return time
     },
     exportSign() {
-      this.$axios.get('http://127.0.0.1:3000/api/exportSign').then(res => {
+      this.$axios.get('http://localhost:3000/api/exportSign').then(res => {
         const ExportJsonExcel = require('js-export-excel')
         var option={};
         let time = this.getNowTime()
@@ -324,7 +324,7 @@ export default {
       })
     },
     setShowMod() {
-      this.$axios.post('http://127.0.0.1:3000/api/setVisa', this.$root.showMod)
+      this.$axios.post('http://localhost:3000/api/setVisa', this.$root.showMod)
       .then(res => {
         if (res.data.status == "success") {
           this.dialogModVisable = false
@@ -334,7 +334,7 @@ export default {
             showClose: true,
             offset: '75'
           })
-          this.$axios.get('http://127.0.0.1:3000/api/visa').then(res => (this.$root.showMod = res.data))
+          this.$axios.get('http://localhost:3000/api/visa').then(res => (this.$root.showMod = res.data))
         } else {
           this.$message({
             message: '设置失败',
@@ -342,7 +342,7 @@ export default {
             showClose: true,
             offset: '75'
           })
-          this.$axios.get('http://127.0.0.1:3000/api/visa').then(res => (this.$root.showMod = res.data))
+          this.$axios.get('http://localhost:3000/api/visa').then(res => (this.$root.showMod = res.data))
         }
       })
     }
@@ -363,5 +363,5 @@ export default {
 .modv-btn
   position absolute
   right 30px
-  top 80px
+  top 90px
 </style>

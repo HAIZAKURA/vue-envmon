@@ -52,7 +52,7 @@
               :data="queData"
               style="width: 100%"
               border
-              height="380"
+              height="400"
             >
               <template v-for="(item, index) in tableValue">
                 <el-table-column
@@ -183,7 +183,7 @@ export default {
     showDateValue() {
       // console.log(this.dateValue)
       this.tableValue = ''
-      this.$axios.get('http://127.0.0.1:3000/api/queryData/' + this.dateValue[0] + '/' + this.dateValue[1])
+      this.$axios.get('http://localhost:3000/api/queryData/' + this.dateValue[0] + '/' + this.dateValue[1])
       .then(res => {
         this.queData = res.data
         this.tableValue = this.value
