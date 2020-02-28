@@ -14,27 +14,21 @@ Vue.prototype.$createGet = function() {
   if (this.$root.getTimer) {
     clearInterval(this.$root.getTimer)
     this.$root.getTimer = setInterval(() => {
-      this.$axios.get('http://127.0.0.1:5000/GetOthers').then(resOth => (this.$root.devOth = resOth.data))
-      // this.$axios.get('dev/GetStatus').then(resStatus => (this.$root.devStatus = resStatus.data))
-      // this.$axios.get('dev/GetCfg').then(resCfg => (this.$root.devStatus = resCfg.data))
+      this.$axios.get('http://localhost:5000/GetOthers').then(resOth => (this.$root.devOth = resOth.data))
       setTimeout(() => {
-        this.$axios.get('http://127.0.0.1:5000/GetCfg').then(resCfg => (this.$root.devCfg = resCfg.data))
+        this.$axios.get('http://localhost:5000/GetCfg').then(resCfg => (this.$root.devCfg = resCfg.data))
         setTimeout(() => {
-          this.$axios.get('http://127.0.0.1:5000/GetStatus').then(resStatus => (this.$root.devStatus = resStatus.data))
-          // this.$axios.get('dev/GetOthers').then(resOth => (this.$root.devOth = resOth.data))
+          this.$axios.get('http://localhost:5000/GetStatus').then(resStatus => (this.$root.devStatus = resStatus.data))
         }, 800)
       }, 800)
     }, 2500)
   } else {
     this.$root.getTimer = setInterval(() => {
-      this.$axios.get('http://127.0.0.1:5000/GetOthers').then(resOth => (this.$root.devOth = resOth.data))
-      // this.$axios.get('dev/GetStatus').then(resStatus => (this.$root.devStatus = resStatus.data))
-      // this.$axios.get('dev/GetCfg').then(resCfg => (this.$root.devStatus = resCfg.data))
+      this.$axios.get('http://localhost:5000/GetOthers').then(resOth => (this.$root.devOth = resOth.data))
       setTimeout(() => {
-        this.$axios.get('http://127.0.0.1:5000/GetCfg').then(resCfg => (this.$root.devCfg = resCfg.data))
+        this.$axios.get('http://localhost:5000/GetCfg').then(resCfg => (this.$root.devCfg = resCfg.data))
         setTimeout(() => {
-          this.$axios.get('http://127.0.0.1:5000/GetStatus').then(resStatus => (this.$root.devStatus = resStatus.data))
-          // this.$axios.get('dev/GetOthers').then(resOth => (this.$root.devOth = resOth.data))
+          this.$axios.get('http://localhost:5000/GetStatus').then(resStatus => (this.$root.devStatus = resStatus.data))
         }, 800)
       }, 800)
     }, 2500)
@@ -43,6 +37,29 @@ Vue.prototype.$createGet = function() {
 
 Vue.prototype.$destoryGet = function() {
   clearInterval(this.$root.getTimer)
+}
+
+Vue.prototype.$createGetInCfg = function() {
+  if (this.$root.getTimerInCfg) {
+    clearInterval(this.$root.getTimerInCfg)
+    this.$root.getTimer = setInterval(() => {
+      this.$axios.get('http://localhost:5000/GetOthers').then(resOth => (this.$root.devOth = resOth.data))
+      setTimeout(() => {
+        this.$axios.get('http://localhost:5000/GetStatus').then(resStatus => (this.$root.devStatus = resStatus.data))
+      }, 800)
+    }, 2000)
+  } else {
+    this.$root.getTimerInCfg = setInterval(() => {
+      this.$axios.get('http://localhost:5000/GetOthers').then(resOth => (this.$root.devOth = resOth.data))
+      setTimeout(() => {
+        this.$axios.get('http://localhost:5000/GetStatus').then(resStatus => (this.$root.devStatus = resStatus.data))
+      }, 800)
+    }, 2000)
+  }
+}
+
+Vue.prototype.$destoryGetInCfg = function() {
+  clearInterval(this.$root.getTimerInCfg)
 }
 
 Vue.prototype.$getTime = function() {
@@ -62,7 +79,7 @@ Vue.prototype.$saveDevStatus = function() {
   }
   var saveDataJson = JSON.parse((JSON.stringify(saveTimeJson) + JSON.stringify(this.$root.devStatus)).replace(/}{/,','));
   // console.log(saveDataJson)
-  this.$axios.post('http://127.0.0.1:3000/api/addData', saveDataJson).then(res => {
+  this.$axios.post('http://localhost:3000/api/addData', saveDataJson).then(res => {
     if (res.data.status == "success") {
       // console.log('数据记录成功')
     } else {
@@ -92,12 +109,13 @@ Vue.prototype.$createSave = function() {
 new Vue({
   data: function() {
     return {
-      saveInterval: 1,
+      saveInterval: 5,
       getStatus: 1,
       devStatus: {},
       devCfg: {},
       devOth: {},
       getTimer: '',
+      getTimerInCfg: '',
       saveTimer: '',
       showMod: {
         "tempOnee": true,
